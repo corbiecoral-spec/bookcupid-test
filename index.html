@@ -865,7 +865,21 @@ if (!SUPABASE_URL.includes("PON_AQUI") && !SUPABASE_ANON_KEY.includes("PON_AQUI"
   button.textContent = "Finalizar";
 }
     }
+function removeWeirdGreaterSigns() {
+  document.querySelectorAll("h2").forEach(h2 => {
+    h2.childNodes.forEach(node => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        node.textContent = node.textContent.replace(/>\s*$/g, "");
+      }
+    });
+  });
 
+  document.querySelectorAll(".helper-text").forEach(item => {
+    item.textContent = item.textContent.replace(/^>\s*/g, "");
+  });
+}
+
+removeWeirdGreaterSigns();
     class ProgressBar extends HTMLElement {
       connectedCallback() {
         const step = Number(this.getAttribute("step"));
