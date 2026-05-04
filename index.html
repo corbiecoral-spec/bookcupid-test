@@ -107,11 +107,11 @@
 }
 
     .question-layout {
-      display: grid;
-      grid-template-columns: minmax(320px, 0.95fr) minmax(260px, 0.75fr);
-      gap: 42px;
-      align-items: center;
-    }
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) minmax(320px, 0.8fr);
+  gap: 34px;
+  align-items: center;
+}
 
     .options {
       display: flex;
@@ -148,15 +148,16 @@
     }
 
     .question-image {
-  width: min(190px, 100%);
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
+  width: min(360p, 100%);
+  aspect-ratio: 4 / 3;
+  border-radius: 28px;
   object-fit: cover;
-  justify-self: start;
+  justify-self: center;
+  align-self: center;
 }
 
     .question-image.rounded {
-      border-radius: 34px;
+      border-radius: 28px;
     }
 
     .next-wrap {
@@ -166,8 +167,8 @@
     }
     .next-fixed {
   position: fixed;
-  bottom: 30px;
-  right: 40px;
+  bottom: 95px;
+  right: 90px;
   z-index: 1000;
 }
 
@@ -559,7 +560,7 @@
   <img class="cupido-corner" src="cupido-logo.png" alt="Logo">
       <div class="question-layout">
         <div>
-          <h2>1. ¿Qué te apetece sentir?<br><span class="helper-text">>(puedes escoger hasta 3 opciones)</span></h2>
+          <h2>1. ¿Qué te apetece sentir?<span class="helper-text">>(puedes escoger hasta 3 opciones)</span></h2>
           <div class="options" data-field="sensaciones" data-max="3">
             <div class="option" data-value="Mariposas en el estómago">Mariposas en el estómago</div>
             <div class="option" data-value="Intriga constante">Intriga constante</div>
@@ -579,7 +580,7 @@
   <img class="cupido-corner" src="cupido-logo.png" alt="Logo">
       <div class="question-layout">
         <div>
-          <h2>2. Nivel de intensidad emocional<br><span class="helper-text">>(escoge una opción)</span></h2>
+          <h2>2. Nivel de intensidad emocional<span class="helper-text">>(escoge una opción)</span></h2>
           <div class="options" data-field="intensidad" data-max="1">
             <div class="option" data-value="Suave, para relajarme">Suave, para relajarme</div>
             <div class="option" data-value="Medio, que me enganche">Medio, que me enganche</div>
@@ -635,7 +636,7 @@
   <img class="cupido-corner" src="cupido-logo.png" alt="Logo">
       <div class="question-layout">
         <div>
-          <h2>5. ¿Qué edad tienes?<br><span class="helper-text">(o la persona que vaya a recibir el regalo)</span></h2>
+          <h2>5. ¿Qué edad tienes?<span class="helper-text">(o la persona que vaya a recibir el regalo)</span></h2>
           <label class="input-label" for="edad">Escribe solo la cifra</label>
           <input id="edad" type="number" min="12" max="120" placeholder="ej: 27">
           <div class="next-wrap"><button class="secondary-btn" type="button" onclick="validateAndNext(5)">Siguiente</button><div class="error" id="error-5"></div></div>
@@ -649,7 +650,7 @@
   <img class="cupido-corner" src="cupido-logo.png" alt="Logo">
       <div class="question-layout">
         <div>
-          <h2>6. Cuéntame algo sobre ti ❤️<br><span class="helper-text">(o sobre la persona a la que se lo vas a regalar):</span></h2>
+          <h2>6. Cuéntame algo sobre ti ❤️<span class="helper-text">(o sobre la persona a la que se lo vas a regalar):</span></h2>
           <textarea id="sobreTi" placeholder="Escribe lo que quieras aquí"></textarea>
           <div class="next-wrap"><button class="secondary-btn" type="button" onclick="validateAndNext(6)">Siguiente</button><div class="error" id="error-6"></div></div>
         </div>
