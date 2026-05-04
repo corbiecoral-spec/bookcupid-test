@@ -294,6 +294,21 @@
       margin-top: 14px;
       min-height: 24px;
     }
+
+    .back-btn {
+  background: transparent;
+  color: #8f1118;
+  border: none;
+  font-size: 15px;
+  padding: 6px 0;
+  margin-bottom: 10px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.back-btn:hover {
+  opacity: 0.7;
+}
 .intro-header {
   display: grid;
   grid-template-columns: 1fr 280px;
@@ -559,6 +574,7 @@
 
     <section class="screen" data-screen="1">
   <img class="cupido-corner" src="cupido-logo.png" alt="Logo">
+      <button class="back-btn" type="button" onclick="goToScreen(0)">← Atrás</button>
       <div class="question-layout">
         <div>
           <h2>1. ¿Qué te apetece sentir?<span class="helper-text">>(puedes escoger hasta 3 opciones)</span></h2>
@@ -579,6 +595,7 @@
 
     <section class="screen" data-screen="2">
   <img class="cupido-corner" src="cupido-logo.png" alt="Logo">
+      <button class="back-btn" type="button" onclick="goToScreen(1)">← Atrás</button>
       <div class="question-layout">
         <div>
           <h2>2. Nivel de intensidad emocional<span class="helper-text">>(escoge una opción)</span></h2>
@@ -597,7 +614,11 @@
 
     <section class="screen" data-screen="3">
   <img class="cupido-corner" src="cupido-logo.png" alt="Logo">
-      <h2>3. Escoge la escena que más te llame la atención:</h2>
+      <button class="back-btn" type="button" onclick="goToScreen(2)">← Atrás</button>
+      <h2>
+  3. Escoge la escena que más te llame la atención
+  <span class="helper-text">(puedes escoger hasta 3 escenas)</span>
+</h2>
       <div class="scene-grid options" data-field="escenas" data-max="3">
         <div class="scene-card option" data-value="Amor de verano"><img src="1playa.jpg" alt="Escena 1"></div>
         <div class="scene-card option" data-value="Ballet / disciplina"><img src="2ballet.jpg" alt="Escena 2"></div>
@@ -618,6 +639,7 @@
 
     <section class="screen" data-screen="4">
   <img class="cupido-corner" src="cupido-logo.png" alt="Logo">
+      <button class="back-btn" type="button" onclick="goToScreen(3)">← Atrás</button>
       <div class="question-layout">
         <div>
           <h2>4. ¿Qué nivel de “spicy” prefieres?</h2>
@@ -635,6 +657,7 @@
 
     <section class="screen" data-screen="5">
   <img class="cupido-corner" src="cupido-logo.png" alt="Logo">
+      <button class="back-btn" type="button" onclick="goToScreen(4)">← Atrás</button>
       <div class="question-layout">
         <div>
           <h2>5. ¿Qué edad tienes?<span class="helper-text">(o la persona que vaya a recibir el regalo)</span></h2>
@@ -649,6 +672,7 @@
 
     <section class="screen" data-screen="6">
   <img class="cupido-corner" src="cupido-logo.png" alt="Logo">
+      <button class="back-btn" type="button" onclick="goToScreen(5)">← Atrás</button>
       <div class="question-layout">
         <div>
           <h2>6. Cuéntame algo sobre ti ❤️<span class="helper-text">(o sobre la persona a la que se lo vas a regalar):</span></h2>
@@ -662,6 +686,7 @@
 
     <section class="screen email-screen" data-screen="7">
   <img class="cupido-small" src="cupido-logo.png" alt="Logo Book Cupid">
+      <button class="back-btn" type="button" onclick="goToScreen(6)">← Atrás</button>
 
   <h2>Escribe tu correo electrónico</h2>
       <p>(el mismo con el que realizarás tu pedido para que podamos preparar tu libro sorpresa perfecto)</p>
