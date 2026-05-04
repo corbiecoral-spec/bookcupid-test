@@ -54,8 +54,8 @@
 }
 
     h1 {
-      margin: 0 0 20px;
-      font-size: clamp(20px, 2vw, 28px);
+      margin: 0 0 28px;
+      font-size: clamp(30px, 3.2vw, 46px);
       line-height: 1.15;
       color: #9b1930;
       font-weight: 400;
@@ -69,6 +69,14 @@
       color: var(--wine);
       font-weight: 500;
     }
+
+    .helper-text {
+  display: block;
+  font-weight: 400;
+  font-size: clamp(13px, 1.2vw, 16px);
+  opacity: 0.8;
+  margin-top: 4px;
+}
 
     p, .subtitle {
       font-size: clamp(15px, 1.5vw, 20px);
@@ -140,7 +148,7 @@
     }
 
     .question-image {
-  width: min(220px, 100%);
+  width: min(190px, 100%);
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   object-fit: cover;
@@ -208,11 +216,11 @@
 
     .scene-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(120px, 190px));
-  gap: 14px;
+  grid-template-columns: repeat(3, minmax(95px, 140px));
+  gap: 10px;
   justify-content: center;
-  max-width: 660px;
-  margin: 28px auto 0;
+  max-width: 460px;
+  margin: 14px auto 0;
 }
 
     .scene-card {
@@ -368,6 +376,11 @@
     padding: 16px 16px 18px;
     min-height: 100svh;
   }
+
+  .helper-text {
+  font-size: 13px;
+  margin-top: 2px;
+}
 
   .screen {
     min-height: auto;
@@ -546,7 +559,7 @@
   <img class="cupido-corner" src="cupido-logo.png" alt="Logo">
       <div class="question-layout">
         <div>
-          <h2>1. ¿Qué te apetece sentir?<br><span style="font-weight:400">(puedes escoger hasta 3 opciones)</span></h2>
+          <h2>1. ¿Qué te apetece sentir?<br><span class="helper-text">>(puedes escoger hasta 3 opciones)</span></h2>
           <div class="options" data-field="sensaciones" data-max="3">
             <div class="option" data-value="Mariposas en el estómago">Mariposas en el estómago</div>
             <div class="option" data-value="Intriga constante">Intriga constante</div>
@@ -566,7 +579,7 @@
   <img class="cupido-corner" src="cupido-logo.png" alt="Logo">
       <div class="question-layout">
         <div>
-          <h2>2. Nivel de intensidad emocional<br><span style="font-weight:400">(escoge una opción)</span></h2>
+          <h2>2. Nivel de intensidad emocional<br><span class="helper-text">>(escoge una opción)</span></h2>
           <div class="options" data-field="intensidad" data-max="1">
             <div class="option" data-value="Suave, para relajarme">Suave, para relajarme</div>
             <div class="option" data-value="Medio, que me enganche">Medio, que me enganche</div>
@@ -622,7 +635,7 @@
   <img class="cupido-corner" src="cupido-logo.png" alt="Logo">
       <div class="question-layout">
         <div>
-          <h2>5. ¿Qué edad tienes?<br><span style="font-weight:400">(o la persona que vaya a recibir el regalo)</span></h2>
+          <h2>5. ¿Qué edad tienes?<br><span class="helper-text">(o la persona que vaya a recibir el regalo)</span></h2>
           <label class="input-label" for="edad">Escribe solo la cifra</label>
           <input id="edad" type="number" min="12" max="120" placeholder="ej: 27">
           <div class="next-wrap"><button class="secondary-btn" type="button" onclick="validateAndNext(5)">Siguiente</button><div class="error" id="error-5"></div></div>
@@ -636,7 +649,7 @@
   <img class="cupido-corner" src="cupido-logo.png" alt="Logo">
       <div class="question-layout">
         <div>
-          <h2>6. Cuéntame algo sobre ti ❤️<br><span style="font-weight:400">(o sobre la persona a la que se lo vas a regalar):</span></h2>
+          <h2>6. Cuéntame algo sobre ti ❤️<br><span class="helper-text">(o sobre la persona a la que se lo vas a regalar):</span></h2>
           <textarea id="sobreTi" placeholder="Escribe lo que quieras aquí"></textarea>
           <div class="next-wrap"><button class="secondary-btn" type="button" onclick="validateAndNext(6)">Siguiente</button><div class="error" id="error-6"></div></div>
         </div>
