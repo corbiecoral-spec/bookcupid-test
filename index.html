@@ -108,8 +108,8 @@
 
     .question-layout {
   display: grid;
-  grid-template-columns: minmax(320px, 1fr) minmax(320px, 0.8fr);
-  gap: 34px;
+  grid-template-columns: minmax(320px, 1fr) 260px;
+  gap: 28px;
   align-items: center;
 }
 
@@ -148,8 +148,9 @@
     }
 
     .question-image {
-  width: min(240p, 100%);
-  aspect-ratio: 4 / 3;
+  width: 240px;
+  max-width: 240px;
+  height: 180px;
   border-radius: 22px;
   object-fit: cover;
   justify-self: center;
@@ -157,7 +158,7 @@
 }
 
     .question-image.rounded {
-      border-radius: 28px;
+      border-radius: 22px;
     }
 
     .next-wrap {
