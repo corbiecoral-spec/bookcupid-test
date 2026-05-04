@@ -712,6 +712,45 @@ if (!SUPABASE_URL.includes("PON_AQUI") && !SUPABASE_ANON_KEY.includes("PON_AQUI"
     function validEmail(email) {
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
+  function getTipoRecomendado() {
+  const texto = [
+    ...answers.sensaciones,
+    answers.intensidad,
+    ...answers.escenas,
+    answers.spicy,
+    answers.sobreTi
+  ].join(" ").toLowerCase();
+
+  if (texto.includes("fantasía") || texto.includes("hadas") || texto.includes("mundo de fantasía")) {
+    return "Fantasía / romantasy";
+  }
+
+  if (texto.includes("oscuro") || texto.includes("peligro") || texto.includes("dark") || texto.includes("explícito")) {
+    return "Dark romance / romance intenso";
+  }
+
+  if (texto.includes("misterio") || texto.includes("investigación") || texto.includes("intriga")) {
+    return "Thriller / misterio";
+  }
+
+  if (texto.includes("deportivo") || texto.includes("sport")) {
+    return "Romance deportivo";
+  }
+
+  if (texto.includes("cowboy")) {
+    return "Cowboy romance";
+  }
+
+  if (texto.includes("llorar") || texto.includes("intenso") || texto.includes("destructivo")) {
+    return "Drama romántico emocional";
+  }
+
+  if (texto.includes("calma") || texto.includes("desconexión") || texto.includes("suave")) {
+    return "Romance cozy / lectura ligera";
+  }
+
+  return "Romance contemporáneo";
+}
 
     async function submitTest() {
       const error = document.getElementById("error-7");
@@ -735,16 +774,17 @@ if (!SUPABASE_URL.includes("PON_AQUI") && !SUPABASE_ANON_KEY.includes("PON_AQUI"
   }
 
   const { error: supabaseError } = await supabaseClient
-    .from("book_cupid_test")
-    .insert([{
-      email: answers.email,
-      sensaciones: answers.sensaciones.join(", "),
-      intensidad: answers.intensidad,
-      escenas: answers.escenas.join(", "),
-      spicy: answers.spicy,
-      edad: answers.edad,
-      sobre_ti: answers.sobreTi
-    }]);
+  .from("book_cupid_test")
+  .insert([{
+    email: answers.email,
+    sensaciones: answers.sensaciones.join(", "),
+    intensidad: answers.intensidad,
+    escenas: answers.escenas.join(", "),
+    spicy: answers.spicy,
+    edad: answers.edad,
+    sobre_ti: answers.sobreTi,
+    tipo_recomendado: getTipoRecomendado()
+  }]);
 
   if (supabaseError) {
     throw supabaseError;
