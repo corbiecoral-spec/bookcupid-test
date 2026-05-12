@@ -32,7 +32,7 @@
 
     .book-cupid-test {
       width: 100%;
-      min-height: 100vh;
+      height: 470px;
       position: relative;
       overflow: hidden;
       font-family: "Arimo", sans-serif;
@@ -40,8 +40,9 @@
 
     .screen {
       display: none;
-      min-height: 100vh;
-      padding: 42px 6vw;
+      height: 470px;
+      min-height: 0;
+      padding: 28px 45px;
       background-image: url("fondo-test.jpg");
       background-size: cover;
       background-position: center;
@@ -179,7 +180,8 @@
 
     /* PORTADA */
     .intro-content {
-      min-height: 100vh;
+      height: 470px;
+      min-height: 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -189,7 +191,7 @@
     }
 
     .intro-title {
-      font-size: clamp(58px, 7.3vw, 118px);
+      font-size: clamp(42px, 5vw, 72px);
       line-height: .9;
       max-width: 850px;
       text-transform: none;
@@ -202,7 +204,7 @@
     }
 
     .intro-btn {
-  margin-top: 70px;
+  margin-top: 42px;
   font-family: "Sniglet", system-ui;
   font-size: clamp(24px, 2.5vw, 38px);
   color: var(--pink);
@@ -439,17 +441,22 @@
 }
 
 .arrow-intro {
-  width: 130px;
-  left: 42%;
-  top: 54%;
+  width: 105px;
+  left: 45%;
+  top: 62%;
   transform: rotate(-12deg);
 }
 
 
     @media (max-width: 850px) {
+      .book-cupid-test {
+        height: 78vh;
+      }
+
       .screen {
+        height: 78vh;
+        min-height: 0;
         padding: 24px 22px;
-        min-height: 100svh;
         background-position: center;
       }
 
@@ -490,6 +497,8 @@
       }
 
       .intro-content {
+        height: 78vh;
+        min-height: 0;
         align-items: center;
         text-align: center;
         padding: 0 18px;
