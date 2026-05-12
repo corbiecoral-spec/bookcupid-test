@@ -4,240 +4,258 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Test Book Cupid</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Arimo:wght@400;700&family=Sniglet:wght@400;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --bg-light: #ffd3d8;
-      --bg-main: #ffa6b2;
-      --pink: #f45b83;
-      --pink-dark: #d96472;
-      --wine: #8f1118;
-      --text: #272727;
       --white: #ffffff;
-      --border: #8f1118;
+      --brown: #905247;
+      --pink: #f58aa4;
+      --yellow: #fff1a8;
+      --blue: #b9cdfb;
+      --green: #d8f3a6;
+      --red: #ffa1ad;
+      --shadow: rgba(90, 45, 30, 0.18);
     }
 
     * { box-sizing: border-box; }
 
     body {
-  margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background: var(--bg-main);
-  color: var(--wine);
-  font-weight: 300;
-}
+      margin: 0;
+      overflow-x: hidden;
+      background: #ffd0a6;
+      color: var(--white);
+    }
 
     .book-cupid-test {
-  width: 100%;
-  min-height: 600px;
-  background: linear-gradient(to bottom, var(--bg-light) 0 34%, var(--bg-main) 34% 100%);
-  padding: 18px 4vw 18px;
-  overflow-x: hidden;
-}
+      width: 100%;
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      font-family: "Arimo", sans-serif;
+    }
 
     .screen {
-  display: none;
-  min-height: 640px;
-  animation: fadeIn .45s ease both;
-}
+      display: none;
+      min-height: 100vh;
+      padding: 42px 6vw;
+      background-image: url("fondo-test.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      animation: fadeIn .35s ease both;
+      position: relative;
+    }
 
     .screen.active { display: block; }
 
-    @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(14px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-    h1 {
-      margin: 0 0 28px;
-      font-size: clamp(30px, 3.2vw, 46px);
-      line-height: 1.15;
-      color: #9b1930;
-      font-weight: 400;
-      letter-spacing: -1.5px;
+    .intro-screen {
+      background-image: url("fondo-portada.jpg");
     }
 
-    h2 {
-      margin: 0 0 14px;
-      font-size: clamp(18px, 1.8vw, 24px);
-      line-height: 1.22;
-      color: var(--wine);
-      font-weight: 500;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1, h2 {
+      font-family: "Anton", sans-serif;
+      margin: 0;
+      font-weight: 400;
+      letter-spacing: .5px;
+      text-transform: none;
+      color: var(--white);
+      text-shadow: 0 3px 10px rgba(255,255,255,.18);
     }
 
     .helper-text {
-  display: block;
-  font-weight: 400;
-  font-size: clamp(13px, 1.2vw, 16px);
-  opacity: 0.8;
-  margin-top: 4px;
-}
-
-    p, .subtitle {
-      font-size: clamp(15px, 1.5vw, 20px);
-      line-height: 1.3;
-      margin: 0 0 16px;
-      color: var(--wine);
+      display: block;
+      font-family: "Arimo", sans-serif;
+      color: var(--brown);
+      font-size: clamp(18px, 1.8vw, 25px);
+      line-height: 1.25;
+      margin-top: 4px;
+      font-weight: 400;
+      text-shadow: none;
     }
 
-    .intro-copy { max-width: 980px; }
+    button, .button {
+      font-family: "Anton", sans-serif;
+      border: none;
+      background: transparent;
+      color: var(--white);
+      cursor: pointer;
+      text-decoration: none;
+    }
 
-    .button, button {
-  border: none;
-  background: linear-gradient(135deg, #f45b83, #ff7aa2);
-  color: white;
-  font-size: clamp(18px, 1.6vw, 22px);
-  font-weight: 500;
-  padding: 14px 30px;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: all .2s ease;
-  font-family: inherit;
-  box-shadow: 0 6px 18px rgba(244, 91, 131, 0.25);
-}
+    .back-btn {
+      position: absolute;
+      top: 42px;
+      left: 7vw;
+      font-family: "Anton", sans-serif;
+      font-size: clamp(24px, 2.6vw, 38px);
+      color: var(--white);
+      padding: 0;
+      z-index: 10;
+      text-shadow: 0 2px 8px rgba(255,255,255,.25);
+    }
 
-    .button:hover, button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(244, 91, 131, 0.35);
-}
+    .back-btn:hover { opacity: .8; }
 
-    .question-layout {
-  display: grid;
-  grid-template-columns: minmax(320px, 1fr) 360px;
-  gap: 24px;
-  align-items: center;
-}
+    .question-title {
+      text-align: center;
+      font-size: clamp(32px, 3.4vw, 54px);
+      line-height: 1.04;
+      margin-bottom: 26px;
+    }
+
+    .center-block {
+      width: min(680px, 92vw);
+      margin: 0 auto;
+      padding-top: 45px;
+      text-align: center;
+    }
 
     .options {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      max-width: 520px;
+      gap: 20px;
+      width: min(650px, 92vw);
+      margin: 0 auto;
     }
 
     .option {
-  display: block;
-  width: 100%;
-  text-align: center;
-  background: rgba(216, 93, 108, 0.92);
-  color: white;
-  padding: 8px 14px;
-  border-radius: 999px;
-  font-size: clamp(14px, 1.3vw, 18px);
-  font-weight: 500;
-  cursor: pointer;
-  border: 2px solid transparent;
-  transition: .18s ease;
-  user-select: none;
-  box-shadow: 0 6px 18px rgba(143, 17, 24, .08);
-}
+      font-family: "Sniglet", system-ui;
+      font-size: clamp(21px, 2.2vw, 34px);
+      color: #d77a82;
+      background: linear-gradient(180deg, #fff7b5, #ffe98e);
+      border: 7px solid var(--white);
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 20px;
+      cursor: pointer;
+      box-shadow: 0 7px 20px var(--shadow);
+      transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
+      user-select: none;
+    }
 
     .option:hover {
-  background: #ec7f8d;
-  transform: translateY(-1px);
-}
-    .option.selected {
-      background: var(--pink);
-      border-color: var(--wine);
-      box-shadow: 0 0 0 4px rgba(143, 17, 24, .08);
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+  border-color: currentColor;
     }
 
-    .question-image {
-  width: 300px;
-  max-width: 300px;
-  height: 230px;
-  border-radius: 22px;
-  object-fit: cover;
-  justify-self: start;
-  align-self: center;
-}
-
-    .question-image.rounded {
-      border-radius: 22px;
+.option.selected {
+  border-color: currentColor;
+  box-shadow: 0 0 0 4px currentColor, 0 10px 22px var(--shadow);
+  transform: scale(1.015);
     }
 
-    .next-wrap {
-      margin-top: 36px;
+    .next-btn {
+      display: inline-block;
+      margin-top: 32px;
+      font-family: "Anton", sans-serif;
+      font-size: clamp(32px, 3.4vw, 52px);
+      color: var(--white);
+      line-height: 1;
+      text-shadow: 0 3px 10px rgba(255,255,255,.22);
+    }
+
+    .next-btn:hover { opacity: .85; }
+
+    .error {
+      color: #8f1118;
+      font-family: "Arimo", sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      min-height: 22px;
+      margin-top: 10px;
+    }
+
+    /* PORTADA */
+    .intro-content {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding-left: 7vw;
+      max-width: 880px;
+    }
+
+    .intro-title {
+      font-size: clamp(58px, 7.3vw, 118px);
+      line-height: .9;
+      max-width: 850px;
+      text-transform: none;
+    }
+
+    .intro-title .pink {
+      color: var(--pink);
+      display: block;
+      margin-top: -8px;
+    }
+
+    .intro-btn {
+  margin-top: 70px;
+  font-family: "Sniglet", system-ui;
+  font-size: clamp(24px, 2.5vw, 38px);
+  color: var(--pink);
+  background: var(--yellow);
+  border: 7px solid var(--white);
+  padding: 16px 48px;
+  box-shadow: 0 8px 22px var(--shadow);
+  position: relative;
+  transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+
+.intro-btn:hover {
+  transform: translateY(-2px);
+  border-color: currentColor;
+  box-shadow: 0 0 0 4px currentColor, 0 8px 22px var(--shadow);
+}
+
+    /* PREGUNTA 3 */
+    .scene-screen {
+      display: none;
+      grid-template-columns: 30% 48% 22%;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .screen.active.scene-screen { display: grid; }
+
+    .scene-title-box {
       text-align: center;
-      max-width: 620px;
-    }
-    .next-fixed {
-  position: fixed;
-  bottom: 95px;
-  right: 90px;
-  z-index: 1000;
-}
-
-.next-fixed button {
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-}
-
-    .secondary-btn {
-  background: rgba(255,255,255,.28);
-  color: #93464a;
-  border: 2px solid #a84a4d;
-  padding: 9px 24px;
-  font-size: clamp(18px, 1.7vw, 24px);
-  font-weight: 700;
-  border-radius: 14px;
-}
-
-    .progress-row {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  margin-top: 24px;
-}
-
-    .progress-track {
-      height: 12px;
-      background: white;
-      border-radius: 999px;
-      flex: 1;
-      overflow: hidden;
+      padding-left: 2vw;
     }
 
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: var(--pink);
-      border-radius: 999px;
-      transition: width .25s ease;
+    .scene-title-box h2 {
+      font-size: clamp(36px, 4vw, 62px);
+      line-height: 1.25;
     }
-
-    .progress-count {
-  color: #111;
-  font-size: clamp(18px, 1.8vw, 24px);
-  min-width: 52px;
-}
 
     .scene-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(95px, 140px));
-  gap: 10px;
-  justify-content: center;
-  max-width: 460px;
-  margin: 14px auto 0;
-}
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      width: min(780px, 100%);
+      margin: 0 auto;
+    }
 
     .scene-card {
       aspect-ratio: 1 / 1;
-      border: 2px solid var(--border);
-      border-radius: 14px;
       overflow: hidden;
-      padding: 7px;
-      background: rgba(255,255,255,.2);
       cursor: pointer;
-      transition: .18s ease;
+      border: 5px solid transparent;
+      background: rgba(255,255,255,.2);
+      transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
     }
-
-    .scene-card:hover { background: rgba(255,255,255,.45); transform: translateY(-2px); }
-    .scene-card.selected { background: white; box-shadow: 0 0 0 4px rgba(143, 17, 24, .15); }
 
     .scene-card img {
       width: 100%;
@@ -246,469 +264,497 @@
       display: block;
     }
 
+    .scene-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .scene-card.selected {
+      border-color: var(--white);
+      box-shadow: 0 0 0 5px rgba(244,132,160,.65);
+    }
+
+    .scene-next {
+      text-align: center;
+      font-family: "Anton", sans-serif;
+      font-size: clamp(34px, 4vw, 60px);
+      color: var(--white);
+    }
+
+    /* SPICY */
+    .spicy-options {
+      width: min(980px, 92vw);
+      margin: 50px auto 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 55px;
+    }
+
+    .spicy-card {
+      aspect-ratio: 1.15 / 1;
+      border: 8px solid var(--white);
+      box-shadow: 0 8px 22px var(--shadow);
+      font-family: "Sniglet", system-ui;
+      font-size: clamp(34px, 3.4vw, 58px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+
+    .spicy-card span {
+      font-size: clamp(42px, 4vw, 70px);
+      margin-top: 12px;
+    }
+
+    .spicy-card.blue { background: var(--blue); color: #005499; }
+    .spicy-card.yellow { background: var(--yellow); color: #b7742b; }
+    .spicy-card.red { background: var(--red); color: #a13d42; }
+
+    .spicy-card.selected {
+      box-shadow: 0 0 0 6px rgba(255,255,255,.65), 0 8px 22px var(--shadow);
+      transform: scale(1.03);
+    }
+
+    /* INPUTS */
+    .field-wrap {
+      width: min(720px, 92vw);
+      margin: 80px auto 0;
+      text-align: center;
+    }
+
     .input-label {
-      font-size: clamp(22px, 2.2vw, 31px);
-      color: var(--text);
-      margin: 20px 0 12px;
       display: block;
+      font-family: "Sniglet", system-ui;
+      font-size: clamp(24px, 2.6vw, 40px);
+      color: #005499;
+      margin-bottom: 8px;
     }
 
     input, textarea {
-  width: min(480px, 100%);
-  font-size: clamp(18px, 1.7vw, 24px);
-  padding: 16px 20px;
-  border: 2px solid #d90036;
-  border-radius: 14px;
-  outline: none;
-  font-family: inherit;
-  background: white;
-}
+      width: 100%;
+      font-family: "Sniglet", system-ui;
+      font-size: clamp(22px, 2.5vw, 34px);
+      color: #3e5f99;
+      background: var(--blue);
+      border: 7px solid var(--white);
+      outline: none;
+      padding: 16px 28px;
+      box-shadow: 0 8px 22px var(--shadow);
+    }
 
     textarea {
-      min-height: 110px;
+      min-height: 180px;
       resize: vertical;
+      background: #fff2b8;
+      color: #8b7746;
     }
 
-    .final-screen h1 {
-      color: var(--text);
-      text-transform: uppercase;
-      font-size: clamp(34px, 4.8vw, 56px);
+    input::placeholder, textarea::placeholder {
+      color: rgba(72, 96, 130, .38);
     }
 
-    .final-screen p {
-      color: #344556;
-      max-width: 900px;
-    }
-
-    .final-screen strong {
-      display: block;
-      color: #344556;
-      font-size: clamp(24px, 2.7vw, 38px);
-      margin: 56px 0 28px;
-    }
-
-    .error {
-      color: #8f1118;
-      font-weight: 700;
-      font-size: 19px;
-      margin-top: 14px;
-      min-height: 24px;
-    }
-
-    .back-btn {
-  background: transparent;
-  color: #8f1118;
-  border: none;
-  font-size: 15px;
-  padding: 6px 0;
-  margin-bottom: 10px;
-  cursor: pointer;
-  text-align: left;
+    /* FINAL */
+    .final-screen {
+  padding: 42px 7vw;
 }
 
-.back-btn:hover {
-  opacity: 0.7;
-}
-.intro-header {
+.final-layout {
+  min-height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 280px;
-  gap: 50px;
-  align-items: end;
+  grid-template-columns: 46% 54%;
+  align-items: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.cupido-logo {
-  width: min(260px, 100%);
-  justify-self: center;
-  opacity: 0.95;
-}
-
-.cupido-small {
-  width: 90px;
-  display: block;
-  margin-bottom: 20px;
-  opacity: 0.9;
-}
-
-.cupido-final {
-  width: 160px;
-  display: block;
-  margin: 0 auto 20px;
-  opacity: 0.95;
-}
-
-.cupido-logo,
-.cupido-small,
-.cupido-final {
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1));
-  animation: logoFade .65s ease both, cornerLogoFloat 3.5s ease-in-out infinite;
-}
-
-@keyframes logoFade {
-  from {
-    opacity: 0;
-    transform: translateY(10px) scale(0.96);
-  }
-  to {
-    opacity: 0.95;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.screen {
+.final-action {
+  text-align: center;
+  transform: translateY(80px);
   position: relative;
 }
 
-.cupido-corner {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  width: 80px;
-  opacity: 0.85;
-  pointer-events: none;
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1));
-  animation: cornerLogoFade .65s ease both, cornerLogoFloat 3.5s ease-in-out infinite;
-}
-@keyframes cornerLogoFade {
-  from {
-    opacity: 0;
-    transform: translateY(10px) scale(0.94);
-  }
-  to {
-    opacity: 0.85;
-    transform: translateY(0) scale(1);
-  }
+.arrow-final {
+  left: -120px;
+  top: 35px;
+  width: 135px;
+  transform: scaleX(-1) rotate(-8deg);
 }
 
-@keyframes cornerLogoFloat {
-  0%, 100% {
-    translate: 0 0;
-  }
-  50% {
-    translate: 0 -5px;
-  }
+    .final-main-title {
+      font-size: clamp(62px, 7vw, 116px);
+      line-height: .9;
+      max-width: 650px;
+    }
+
+    .final-main-title .pink {
+      color: var(--pink);
+      font-size: .62em;
+      display: inline-block;
+      line-height: .95;
+    }
+
+    .final-text {
+      font-family: "Sniglet", system-ui;
+      color: var(--brown);
+      font-size: clamp(22px, 2.1vw, 34px);
+      line-height: 1.45;
+      max-width: 380px;
+      margin-top: 22px;
+    }
+
+    .final-action {
+      text-align: center;
+      transform: translateY(55px);
+    }
+
+    .final-btn {
+      display: inline-block;
+      font-family: "Sniglet", system-ui;
+      font-size: clamp(26px, 2.7vw, 42px);
+      color: var(--white);
+      background: var(--blue);
+      border: 7px solid var(--white);
+      padding: 14px 34px;
+      box-shadow: 0 8px 22px var(--shadow);
+    }
+
+    .final-strong {
+      display: block;
+      font-family: "Anton", sans-serif;
+      color: var(--white);
+      font-size: clamp(26px, 2.7vw, 42px);
+      line-height: 1;
+      margin-top: 30px;
+    }
+
+    .curved-arrow {
+  position: absolute;
+  width: 180px;
+  opacity: 0.95;
+  pointer-events: none;
+  z-index: 2;
 }
+
+.arrow-intro {
+  width: 130px;
+  left: 42%;
+  top: 54%;
+  transform: rotate(-12deg);
+}
+
 
     @media (max-width: 850px) {
-  .book-cupid-test {
-    padding: 16px 16px 18px;
-    min-height: 100svh;
-  }
+      .screen {
+        padding: 24px 22px;
+        min-height: 100svh;
+        background-position: center;
+      }
 
-  .helper-text {
-  font-size: 13px;
-  margin-top: 2px;
-}
+      .back-btn {
+        top: 22px;
+        left: 24px;
+        font-size: 25px;
+      }
 
-  .screen {
-    min-height: auto;
-  }
+      .center-block {
+        padding-top: 72px;
+      }
 
-  .intro-header {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
+      .question-title {
+        font-size: 31px;
+        margin-bottom: 22px;
+      }
 
-  /* LOGOS */
-  .cupido-logo {
-    width: 110px;
-    margin: 8px auto 10px;
-  }
+      .helper-text {
+        font-size: 15px;
+      }
 
-  .cupido-small {
-    width: 60px;
-    margin: 0 auto 12px;
-  }
+      .options {
+        gap: 13px;
+        width: 100%;
+      }
 
-  .cupido-final {
-    width: 70px;
-    margin: 0 auto 12px;
-  }
+      .option {
+        min-height: 52px;
+        border-width: 5px;
+        font-size: 20px;
+        padding: 8px 10px;
+      }
 
-  /* QUITAMOS EL CUPIDO EN MOVIL */
-  .cupido-corner {
-    display: none;
-  }
+      .next-btn {
+        font-size: 32px;
+        margin-top: 26px;
+      }
 
-  /* TEXTOS */
-  h1 {
-    margin-bottom: 16px;
-    font-size: 24px;
-    line-height: 1.1;
-  }
+      .intro-content {
+        align-items: center;
+        text-align: center;
+        padding: 0 18px;
+      }
 
-  h2 {
-    font-size: 22px;
-    margin-bottom: 12px;
-    line-height: 1.15;
-  }
+      .intro-title {
+        font-size: 52px;
+      }
 
-  p, .subtitle {
-    font-size: 16px;
-    line-height: 1.35;
-    margin-bottom: 14px;
-  }
+      .intro-btn {
+        margin-top: 46px;
+        font-size: 24px;
+        padding: 13px 28px;
+        border-width: 5px;
+      }
 
-  /* LAYOUT */
-  .question-layout {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
+      .screen.active.scene-screen {
+        display: block;
+      }
 
-  /* quitamos imágenes en móvil */
-  .question-image {
-    display: none;
-  }
+      .scene-title-box {
+        padding: 70px 0 12px;
+      }
 
-  /* OPCIONES */
-  .options {
-    gap: 8px;
-  }
+      .scene-title-box h2 {
+        font-size: 30px;
+        line-height: 1.15;
+      }
 
-  .option {
-    font-size: 15px;
-    padding: 9px 12px;
-  }
+      .scene-grid {
+        gap: 8px;
+      }
 
-  .secondary-btn {
-    font-size: 16px;
-    padding: 8px 18px;
-  }
+      .scene-card {
+        border-width: 3px;
+      }
 
-  .next-wrap {
-    margin-top: 14px;
-  }
+      .scene-next {
+        font-size: 32px;
+        margin-top: 18px;
+      }
 
-  /* ESCENAS */
-  .scene-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    margin-top: 10px;
-  }
+      .spicy-options {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin-top: 24px;
+      }
 
-  .scene-card {
-    padding: 4px;
-    border-radius: 8px;
-  }
+      .spicy-card {
+        aspect-ratio: auto;
+        min-height: 105px;
+        border-width: 5px;
+        font-size: 30px;
+      }
 
-  /* INPUTS */
-  input, textarea {
-    font-size: 16px;
-    padding: 12px 14px;
-  }
+      .spicy-card span {
+        font-size: 34px;
+        margin-top: 4px;
+      }
 
-  textarea {
-    min-height: 80px;
-  }
+      .field-wrap {
+        margin-top: 55px;
+      }
 
-  .input-label {
-    font-size: 16px;
-    margin: 6px 0 6px;
-  }
+      .input-label {
+        font-size: 22px;
+      }
 
-  /* PROGRESO */
-  .progress-row {
-    margin-top: 16px;
-    gap: 8px;
-  }
+      input, textarea {
+        border-width: 5px;
+        font-size: 21px;
+        padding: 13px 18px;
+      }
 
-  .progress-track {
-    height: 8px;
-  }
+      textarea {
+        min-height: 150px;
+      }
 
-  .progress-count {
-    font-size: 14px;
-  }
+      .final-screen {
+        padding: 30px 24px;
+      }
 
-  /* BOTÓN SIGUIENTE */
-  .next-fixed {
-    position: static;
-    margin-top: 12px;
-  }
+      .final-layout {
+        display: block;
+        text-align: left;
+        padding-top: 70px;
+      }
 
-  .next-fixed button {
-    width: 100%;
-    max-width: 220px;
-  }
+      .final-main-title {
+        font-size: 48px;
+      }
 
-  /* FINAL */
-  .final-screen h1 {
-    font-size: 26px;
-    line-height: 1.1;
-    margin-bottom: 18px;
-  }
+      .final-text {
+        font-size: 20px;
+        max-width: 280px;
+      }
 
-  .final-screen p {
-    font-size: 16px;
-  }
+      .final-action {
+        transform: none;
+        text-align: center;
+        margin-top: 40px;
+      }
 
-  .final-screen strong {
-    font-size: 18px;
-    margin: 20px 0 12px;
-  }
+      .final-btn {
+        font-size: 24px;
+        border-width: 5px;
+      }
 
-  .final-screen .button {
-    font-size: 16px;
-    padding: 10px 20px;
-  }
-}
+      .final-strong {
+        font-size: 23px;
+      }
 
-
+      .curved-arrow {
+  display: none;
+      }
+    }
   </style>
 </head>
+
 <body>
   <main class="book-cupid-test">
-    <section class="screen active intro-screen" data-screen="0">
-  <div class="intro-header">
-    <div>
-      <h1>Ayúdame a elegir tu libro perfecto 💖</h1>
-      <div class="intro-copy">
-        <p>Antes de continuar con tu compra, necesito que respondas este divertido test para poder escoger tu libro sorpresa perfecto.</p>
-        <p>Tu no eliges el libro... el libro te elige a ti.</p>
-        <button type="button" onclick="goToScreen(1)">Hacer el test de BookCupid →</button>
-            </div>
-    </div>
 
-    <img class="cupido-logo" src="cupido-logo.png" alt="Logo de Book Cupid">
-  </div>
-</section>
+    <section class="screen active intro-screen" data-screen="0">
+  <div class="intro-content">
+    <img src="flecha-curva-blanca.png" class="curved-arrow arrow-intro" alt="">
+
+    <h1 class="intro-title">
+          Ayúdame a elegir
+          <span class="pink">tu libro perfecto</span>
+        </h1>
+        <button class="intro-btn" type="button" onclick="goToScreen(1)">REALIZAR EL TEST</button>
+      </div>
+    </section>
 
     <section class="screen" data-screen="1">
-  <img class="cupido-corner" src="cupido-logo.png" alt="Logo">
       <button class="back-btn" type="button" onclick="goToScreen(0)">← Atrás</button>
-      <div class="question-layout">
-        <div>
-          <h2>1. ¿Qué te apetece sentir?<span class="helper-text">(puedes escoger hasta 3 opciones)</span></h2>
-          <div class="options" data-field="sensaciones" data-max="3">
-            <div class="option" data-value="Mariposas en el estómago">Mariposas en el estómago</div>
-            <div class="option" data-value="Intriga constante">Intriga constante</div>
-            <div class="option" data-value="Llorar a mares">Llorar a mares</div>
-            <div class="option" data-value="Calma y desconexión">Calma y desconexión</div>
-            <div class="option" data-value="Un mundo de fantasía">Un mundo de fantasía</div>
-            <div class="option" data-value="Entenderme mejor">Entenderme mejor</div>
-          </div>
-          <div class="next-wrap"><button class="secondary-btn" type="button" onclick="validateAndNext(1)">Siguiente</button><div class="error" id="error-1"></div></div>
+      <div class="center-block">
+        <h2 class="question-title">1. ¿Qué te apetece sentir?<span class="helper-text">(puedes escoger hasta 3 opciones)</span></h2>
+        <div class="options" data-field="sensaciones" data-max="3">
+          <div class="option" data-value="Mariposas en el estómago">Mariposas en el estómago</div>
+          <div class="option" data-value="Intriga constante">Intriga constante</div>
+          <div class="option" data-value="Llorar a mares">Llorar a mares</div>
+          <div class="option" data-value="Calma y desconexión">Calma y desconexión</div>
+          <div class="option" data-value="Un mundo de fantasía">Un mundo de fantasía</div>
+          <div class="option" data-value="Entenderme mejor">Entenderme mejor</div>
         </div>
-        <img class="question-image" src="5.jpg" alt="Lectura en el campo">
+        <button class="next-btn" type="button" onclick="validateAndNext(1)">Siguiente</button>
+        <div class="error" id="error-1"></div>
       </div>
-      <ProgressBar step="1"></ProgressBar>
     </section>
 
     <section class="screen" data-screen="2">
-  <img class="cupido-corner" src="cupido-logo.png" alt="Logo">
       <button class="back-btn" type="button" onclick="goToScreen(1)">← Atrás</button>
-      <div class="question-layout">
-        <div>
-          <h2>2. Nivel de intensidad emocional<span class="helper-text">(escoge una opción)</span></h2>
-          <div class="options" data-field="intensidad" data-max="1">
-            <div class="option" data-value="Suave, para relajarme">Suave, para relajarme</div>
-            <div class="option" data-value="Medio, que me enganche">Medio, que me enganche</div>
-            <div class="option" data-value="Intenso, que me duela">Intenso, que me duela</div>
-            <div class="option" data-value="Destructivo, quiero sufrir">Destructivo, quiero sufrir</div>
-          </div>
-          <div class="next-wrap"><button class="secondary-btn" type="button" onclick="validateAndNext(2)">Siguiente</button><div class="error" id="error-2"></div></div>
+      <div class="center-block">
+        <h2 class="question-title">2. Nivel de intensidad emocional<span class="helper-text">(escoge una opción)</span></h2>
+        <div class="options" data-field="intensidad" data-max="1">
+          <div class="option" style="background:#d8f3a6;color:#5b7f22" data-value="Suave, para relajarme">Suave, para relajarme</div>
+          <div class="option" style="background:#b9cdfb;color:#005499" data-value="Medio, que me enganche">Medio, que me enganche</div>
+          <div class="option" style="background:#fff1a8;color:#99822b" data-value="Intenso, que me duela">Intenso, que me duela</div>
+          <div class="option" style="background:#ffa1ad;color:#a13d42" data-value="Destructivo, quiero sufrir">Destructivo, quiero sufrir</div>
         </div>
-        <img class="question-image" src="4.jpg" alt="Pareja en el campo">
+        <button class="next-btn" type="button" onclick="validateAndNext(2)">Siguiente</button>
+        <div class="error" id="error-2"></div>
       </div>
-      <ProgressBar step="2"></ProgressBar>
     </section>
 
-    <section class="screen" data-screen="3">
-  <img class="cupido-corner" src="cupido-logo.png" alt="Logo">
+    <section class="screen scene-screen" data-screen="3">
       <button class="back-btn" type="button" onclick="goToScreen(2)">← Atrás</button>
-      <h2>
-  3. Escoge la escena que más te llame la atención
-  <span class="helper-text">(puedes escoger hasta 3 escenas)</span>
-</h2>
-      <div class="scene-grid options" data-field="escenas" data-max="3">
-        <div class="scene-card option" data-value="Amor de verano"><img src="1playa.jpg" alt="Escena 1"></div>
-        <div class="scene-card option" data-value="Ballet / disciplina"><img src="2ballet.jpg" alt="Escena 2"></div>
-        <div class="scene-card option" data-value="Romance deportivo"><img src="3sport-romance.jpg" alt="Escena 3"></div>
-        <div class="scene-card option" data-value="Cowboy romance"><img src="4cowboy.jpg" alt="Escena 4"></div>
-        <div class="scene-card option" data-value="Oscuro / peligro"><img src="5dark-romance.jpg"></div>
-        <div class="scene-card option" data-value="Fantasía épica"><img src="6fantasia.jpg" alt="Escena 6"></div>
-        <div class="scene-card option" data-value="Drama romántico"><img src="7llorar.jpg" alt="Escena 7"></div>
-        <div class="scene-card option" data-value="Magia / hadas"><img src="8hadas.jpg" alt="Escena 8"></div>
-        <div class="scene-card option" data-value="Misterio / investigación"><img src="9truecrime.jpg" alt="Escena 9"></div>
+
+      <div class="scene-title-box">
+        <h2>3. Escoge la escena que más te llame la atención</h2>
+        <span class="helper-text">(puedes escoger hasta 3 escenas)</span>
       </div>
-      <div class="next-wrap next-fixed">
-  <button class="secondary-btn" type="button" onclick="validateAndNext(3)">Siguiente</button>
-  <div class="error" id="error-3"></div>
-</div>
-      <ProgressBar step="3"></ProgressBar>
+
+      <div class="scene-grid options" data-field="escenas" data-max="3">
+        <div class="scene-card option" data-value="Amor de verano"><img src="1playa.jpg" alt=""></div>
+        <div class="scene-card option" data-value="Ballet / disciplina"><img src="2ballet.jpg" alt=""></div>
+        <div class="scene-card option" data-value="Romance deportivo"><img src="3sport-romance.jpg" alt=""></div>
+        <div class="scene-card option" data-value="Cowboy romance"><img src="4cowboy.jpg" alt=""></div>
+        <div class="scene-card option" data-value="Oscuro / peligro"><img src="5dark-romance.jpg" alt=""></div>
+        <div class="scene-card option" data-value="Fantasía épica"><img src="6fantasia.jpg" alt=""></div>
+        <div class="scene-card option" data-value="Drama romántico"><img src="7llorar.jpg" alt=""></div>
+        <div class="scene-card option" data-value="Magia / hadas"><img src="8hadas.jpg" alt=""></div>
+        <div class="scene-card option" data-value="Misterio / investigación"><img src="9truecrime.jpg" alt=""></div>
+      </div>
+
+      <div class="scene-next">
+        <button class="next-btn" type="button" onclick="validateAndNext(3)">Siguiente</button>
+        <div class="error" id="error-3"></div>
+      </div>
     </section>
 
     <section class="screen" data-screen="4">
-  <img class="cupido-corner" src="cupido-logo.png" alt="Logo">
       <button class="back-btn" type="button" onclick="goToScreen(3)">← Atrás</button>
-      <div class="question-layout">
-        <div>
-          <h2>4. ¿Qué nivel de “spicy” prefieres?</h2>
-          <div class="options" data-field="spicy" data-max="1">
-            <div class="option" data-value="Nada">Nada ❌</div>
-            <div class="option" data-value="Medio">Medio 🌶️</div>
-            <div class="option" data-value="Explícito sin límite">Explícito sin límite ❤️‍🔥</div>
-          </div>
-          <div class="next-wrap"><button class="secondary-btn" type="button" onclick="validateAndNext(4)">Siguiente</button><div class="error" id="error-4"></div></div>
+      <div class="center-block" style="width:min(1080px,92vw)">
+        <h2 class="question-title">4. ¿Qué nivel de spicy prefieres?<span class="helper-text">(escoge una opción)</span></h2>
+        <div class="spicy-options options" data-field="spicy" data-max="1">
+          <div class="spicy-card blue option" data-value="Nada">Nada<span>🤍🤍</span></div>
+          <div class="spicy-card yellow option" data-value="Medio">Medio<span>🌶️</span></div>
+          <div class="spicy-card red option" data-value="Explícito sin límite">Sin límite<span>🔥🌶️</span></div>
         </div>
-        <img class="question-image rounded" src="1.jpg" alt="Romance spicy">
+        <button class="next-btn" type="button" onclick="validateAndNext(4)">Siguiente</button>
+        <div class="error" id="error-4"></div>
       </div>
-      <ProgressBar step="4"></ProgressBar>
     </section>
 
     <section class="screen" data-screen="5">
-  <img class="cupido-corner" src="cupido-logo.png" alt="Logo">
       <button class="back-btn" type="button" onclick="goToScreen(4)">← Atrás</button>
-      <div class="question-layout">
-        <div>
-          <h2>5. ¿Qué edad tienes?<span class="helper-text">(o la persona que vaya a recibir el regalo)</span></h2>
+      <div class="center-block">
+        <h2 class="question-title">5. ¿Qué edad tienes?<span class="helper-text">(o la persona que vaya a recibir el regalo)</span></h2>
+        <div class="field-wrap">
           <label class="input-label" for="edad">Escribe solo la cifra</label>
-          <input id="edad" type="number" min="12" max="120" placeholder="ej: 27">
-          <div class="next-wrap"><button class="secondary-btn" type="button" onclick="validateAndNext(5)">Siguiente</button><div class="error" id="error-5"></div></div>
+          <input id="edad" type="number" min="12" max="120" placeholder="ej: 32">
         </div>
-        <img class="question-image rounded" src="6.jpg" alt="Libros con flores">
+        <button class="next-btn" type="button" onclick="validateAndNext(5)">Siguiente</button>
+        <div class="error" id="error-5"></div>
       </div>
-      <ProgressBar step="5"></ProgressBar>
     </section>
 
     <section class="screen" data-screen="6">
-  <img class="cupido-corner" src="cupido-logo.png" alt="Logo">
       <button class="back-btn" type="button" onclick="goToScreen(5)">← Atrás</button>
-      <div class="question-layout">
-        <div>
-          <h2>6. Cuéntame algo sobre ti ❤️<span class="helper-text">(o sobre la persona a la que se lo vas a regalar):</span></h2>
-          <textarea id="sobreTi" placeholder="Escribe lo que quieras aquí"></textarea>
-          <div class="next-wrap"><button class="secondary-btn" type="button" onclick="validateAndNext(6)">Siguiente</button><div class="error" id="error-6"></div></div>
+      <div class="center-block" style="width:min(820px,92vw)">
+        <h2 class="question-title">6. Cuéntame algo sobre ti<span class="helper-text">(o sobre la persona que vaya a recibir el regalo)</span></h2>
+        <div class="field-wrap">
+          <textarea id="sobreTi" placeholder="escribe aquí"></textarea>
         </div>
-        <img class="question-image rounded" src="3.jpg" alt="Lago al atardecer">
+        <button class="next-btn" type="button" onclick="validateAndNext(6)">Siguiente</button>
+        <div class="error" id="error-6"></div>
       </div>
-      <ProgressBar step="6"></ProgressBar>
     </section>
 
     <section class="screen email-screen" data-screen="7">
-  <img class="cupido-small" src="cupido-logo.png" alt="Logo Book Cupid">
       <button class="back-btn" type="button" onclick="goToScreen(6)">← Atrás</button>
-
-  <h2>Escribe tu correo electrónico</h2>
-      <p>(el mismo con el que realizarás tu pedido para que podamos preparar tu libro sorpresa perfecto)</p>
-      <input id="email" type="email" placeholder="email">
-      <div class="next-wrap" style="text-align:left"><button class="secondary-btn" type="button" onclick="submitTest()">Finalizar</button><div class="error" id="error-7"></div></div>
-      <ProgressBar step="7"></ProgressBar>
+      <div class="center-block">
+        <h2 class="question-title">Escribe tu correo electrónico<span class="helper-text">(el mismo con el que realizarás tu pedido<br>para que podamos preparar tu libro sorpresa perfecto)</span></h2>
+        <div class="field-wrap">
+          <input id="email" type="email" placeholder="email">
+        </div>
+        <button class="next-btn" type="button" onclick="submitTest(event)">Siguiente</button>
+        <div class="error" id="error-7"></div>
+      </div>
     </section>
 
     <section class="screen final-screen" data-screen="8">
-  <img class="cupido-final" src="cupido-logo.png" alt="Logo Book Cupid">
+      <div class="final-layout">
+        <div>
+          <h1 class="final-main-title">
+            Ya tengo lo que necesito
+            <span class="pink">para tu cita literaria perfecta</span>
+          </h1>
+          <p class="final-text">Voy a elegir un libro pensando en ti, en tu momento actual y en lo que necesitas sentir ahora mismo.</p>
+        </div>
 
-  <h1>YA TENGO LO QUE NECESITO PARA TU CITA LITERARIA PERFECTA 💘</h1>
-      <p>Voy a elegir un libro pensando en ti, en tu momento actual y en lo que necesitas sentir ahora mismo.</p>
-      <strong>Completa la compra para recibir<br>
-        tu cita a ciegas literaria👇🏻</strong>
-      <a class="button" id="cartLink" href="https://bookcupidshop.com/shop" target="_top" style="text-decoration:none;display:inline-block">Escoger mi caja →</a>
+        <div class="final-action">
+          <img src="flecha-curva-blanca.png" class="curved-arrow arrow-final" alt="">
+          <a class="final-btn" id="cartLink" href="https://bookcupidshop.com/shop" target="_top">ESCOGER MI CAJA</a>
+          <strong class="final-strong">Completa la compra para recibir<br>tu cita a ciegas literaria</strong>
+        </div>
+      </div>
     </section>
+
   </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-    // 1) Datos de Supabase
 const SUPABASE_URL = "https://zwyguaxtpjemdswsyawl.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_-vjsNrFwZaXlqL9ijgoX1g_TfdKrYDh";
 
@@ -718,92 +764,97 @@ if (!SUPABASE_URL.includes("PON_AQUI") && !SUPABASE_ANON_KEY.includes("PON_AQUI"
   supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 }
 
-    // 2) Cambia esta URL por el enlace real del carrito/checkout de Wix.
-    const CART_URL = "https://bookcupidshop.com/shop";
-    document.getElementById("cartLink").href = CART_URL;
+const CART_URL = "https://bookcupidshop.com/shop";
+document.getElementById("cartLink").href = CART_URL;
 
-    const answers = {
-      sensaciones: [],
-      intensidad: "",
-      escenas: [],
-      spicy: "",
-      edad: "",
-      sobreTi: "",
-      email: ""
-    };
+const answers = {
+  sensaciones: [],
+  intensidad: "",
+  escenas: [],
+  spicy: "",
+  edad: "",
+  sobreTi: "",
+  email: ""
+};
 
-    document.querySelectorAll(".options").forEach(group => {
-      group.addEventListener("click", (event) => {
-        const option = event.target.closest(".option");
-        if (!option) return;
+document.querySelectorAll(".options").forEach(group => {
+  group.addEventListener("click", (event) => {
+    const option = event.target.closest(".option");
+    if (!option) return;
 
-        const field = group.dataset.field;
-        const max = Number(group.dataset.max || 1);
-        const value = option.dataset.value;
-        const selected = [...group.querySelectorAll(".selected")];
+    const field = group.dataset.field;
+    const max = Number(group.dataset.max || 1);
+    const value = option.dataset.value;
+    const selected = [...group.querySelectorAll(".selected")];
 
-        if (max === 1) {
-          group.querySelectorAll(".option").forEach(item => item.classList.remove("selected"));
-          option.classList.add("selected");
-          answers[field] = value;
-          return;
-        }
-
-        if (option.classList.contains("selected")) {
-          option.classList.remove("selected");
-        } else {
-          if (selected.length >= max) return;
-          option.classList.add("selected");
-        }
-
-        answers[field] = [...group.querySelectorAll(".selected")].map(item => item.dataset.value);
-      });
-    });
-
-    function goToScreen(number) {
-      document.querySelectorAll(".screen").forEach(screen => screen.classList.remove("active"));
-      document.querySelector(`[data-screen="${number}"]`).classList.add("active");
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    if (max === 1) {
+      group.querySelectorAll(".option").forEach(item => item.classList.remove("selected"));
+      option.classList.add("selected");
+      answers[field] = value;
+      return;
     }
 
-    function validateAndNext(step) {
-      const error = document.getElementById(`error-${step}`);
-      error.textContent = "";
-
-      if (step === 1 && answers.sensaciones.length === 0) {
-        error.textContent = "Escoge al menos una opción.";
-        return;
-      }
-      if (step === 2 && !answers.intensidad) {
-        error.textContent = "Escoge una opción.";
-        return;
-      }
-      if (step === 3 && answers.escenas.length === 0) {
-  error.textContent = "Escoge al menos una escena.";
-  return;
-      }
-      if (step === 4 && !answers.spicy) {
-        error.textContent = "Escoge una opción.";
-        return;
-      }
-      if (step === 5) {
-        answers.edad = document.getElementById("edad").value.trim();
-        if (!answers.edad || Number(answers.edad) < 12) {
-          error.textContent = "Escribe una edad válida.";
-          return;
-        }
-      }
-      if (step === 6) {
-        answers.sobreTi = document.getElementById("sobreTi").value.trim();
-      }
-
-      goToScreen(step + 1);
+    if (option.classList.contains("selected")) {
+      option.classList.remove("selected");
+    } else {
+      if (selected.length >= max) return;
+      option.classList.add("selected");
     }
 
-    function validEmail(email) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    answers[field] = [...group.querySelectorAll(".selected")].map(item => item.dataset.value);
+  });
+});
+
+function goToScreen(number) {
+  document.querySelectorAll(".screen").forEach(screen => screen.classList.remove("active"));
+  document.querySelector(`[data-screen="${number}"]`).classList.add("active");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function validateAndNext(step) {
+  const error = document.getElementById(`error-${step}`);
+  error.textContent = "";
+
+  if (step === 1 && answers.sensaciones.length === 0) {
+    error.textContent = "Escoge al menos una opción.";
+    return;
+  }
+
+  if (step === 2 && !answers.intensidad) {
+    error.textContent = "Escoge una opción.";
+    return;
+  }
+
+  if (step === 3 && answers.escenas.length === 0) {
+    error.textContent = "Escoge al menos una escena.";
+    return;
+  }
+
+  if (step === 4 && !answers.spicy) {
+    error.textContent = "Escoge una opción.";
+    return;
+  }
+
+  if (step === 5) {
+    answers.edad = document.getElementById("edad").value.trim();
+    if (!answers.edad || Number(answers.edad) < 12) {
+      error.textContent = "Escribe una edad válida.";
+      return;
     }
-  function getTipoRecomendado() {
+  }
+
+  if (step === 6) {
+    answers.sobreTi = document.getElementById("sobreTi").value.trim();
+  }
+
+  goToScreen(step + 1);
+}
+
+function validEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function getTipoRecomendado() {
   const texto = [
     ...answers.sensaciones,
     answers.intensidad,
@@ -812,112 +863,63 @@ if (!SUPABASE_URL.includes("PON_AQUI") && !SUPABASE_ANON_KEY.includes("PON_AQUI"
     answers.sobreTi
   ].join(" ").toLowerCase();
 
-  if (texto.includes("fantasía") || texto.includes("hadas") || texto.includes("mundo de fantasía")) {
-    return "Fantasía / romantasy";
-  }
-
-  if (texto.includes("oscuro") || texto.includes("peligro") || texto.includes("dark") || texto.includes("explícito")) {
-    return "Dark romance / romance intenso";
-  }
-
-  if (texto.includes("misterio") || texto.includes("investigación") || texto.includes("intriga")) {
-    return "Thriller / misterio";
-  }
-
-  if (texto.includes("deportivo") || texto.includes("sport")) {
-    return "Romance deportivo";
-  }
-
-  if (texto.includes("cowboy")) {
-    return "Cowboy romance";
-  }
-
-  if (texto.includes("llorar") || texto.includes("intenso") || texto.includes("destructivo")) {
-    return "Drama romántico emocional";
-  }
-
-  if (texto.includes("calma") || texto.includes("desconexión") || texto.includes("suave")) {
-    return "Romance cozy / lectura ligera";
-  }
+  if (texto.includes("fantasía") || texto.includes("hadas") || texto.includes("mundo de fantasía")) return "Fantasía / romantasy";
+  if (texto.includes("oscuro") || texto.includes("peligro") || texto.includes("dark") || texto.includes("explícito")) return "Dark romance / romance intenso";
+  if (texto.includes("misterio") || texto.includes("investigación") || texto.includes("intriga")) return "Thriller / misterio";
+  if (texto.includes("deportivo") || texto.includes("sport")) return "Romance deportivo";
+  if (texto.includes("cowboy")) return "Cowboy romance";
+  if (texto.includes("llorar") || texto.includes("intenso") || texto.includes("destructivo")) return "Drama romántico emocional";
+  if (texto.includes("calma") || texto.includes("desconexión") || texto.includes("suave")) return "Romance cozy / lectura ligera";
 
   return "Romance contemporáneo";
 }
 
-    async function submitTest() {
-      const error = document.getElementById("error-7");
-      const button = event.target;
-      error.textContent = "";
+async function submitTest(event) {
+  const error = document.getElementById("error-7");
+  const button = event.target;
+  error.textContent = "";
 
-      answers.email = document.getElementById("email").value.trim();
-      if (!validEmail(answers.email)) {
-        error.textContent = "Escribe un email válido.";
-        return;
-      }
+  answers.email = document.getElementById("email").value.trim();
 
-      button.disabled = true;
-      button.textContent = "Guardando...";
-
-      try {
-  if (!supabaseClient) {
-    console.log("Modo prueba: respuestas no guardadas todavía", answers);
-    goToScreen(8);
+  if (!validEmail(answers.email)) {
+    error.textContent = "Escribe un email válido.";
     return;
   }
 
-  const { error: supabaseError } = await supabaseClient
-  .from("book_cupid_test")
-  .insert([{
-    email: answers.email,
-    sensaciones: answers.sensaciones.join(", "),
-    intensidad: answers.intensidad,
-    escenas: answers.escenas.join(", "),
-    spicy: answers.spicy,
-    edad: answers.edad,
-    sobre_ti: answers.sobreTi,
-    tipo_recomendado: getTipoRecomendado()
-  }]);
+  button.disabled = true;
+  button.textContent = "Guardando...";
 
-  if (supabaseError) {
-    throw supabaseError;
+  try {
+    if (!supabaseClient) {
+      console.log("Modo prueba: respuestas no guardadas todavía", answers);
+      goToScreen(8);
+      return;
+    }
+
+    const { error: supabaseError } = await supabaseClient
+      .from("book_cupid_test")
+      .insert([{
+        email: answers.email,
+        sensaciones: answers.sensaciones.join(", "),
+        intensidad: answers.intensidad,
+        escenas: answers.escenas.join(", "),
+        spicy: answers.spicy,
+        edad: answers.edad,
+        sobre_ti: answers.sobreTi,
+        tipo_recomendado: getTipoRecomendado()
+      }]);
+
+    if (supabaseError) throw supabaseError;
+
+    goToScreen(8);
+  } catch (err) {
+    console.error(err);
+    error.textContent = "Ha habido un error al guardar. Inténtalo de nuevo.";
+  } finally {
+    button.disabled = false;
+    button.textContent = "Siguiente";
   }
-
-  goToScreen(8);
-} catch (err) {
-  console.error(err);
-  error.textContent = "Ha habido un error al guardar. Inténtalo de nuevo.";
-} finally {
-  button.disabled = false;
-  button.textContent = "Finalizar";
 }
-    }
-function removeWeirdGreaterSigns() {
-  document.querySelectorAll("h2").forEach(h2 => {
-    h2.childNodes.forEach(node => {
-      if (node.nodeType === Node.TEXT_NODE) {
-        node.textContent = node.textContent.replace(/>\s*$/g, "");
-      }
-    });
-  });
-
-  document.querySelectorAll(".helper-text").forEach(item => {
-    item.textContent = item.textContent.replace(/^>\s*/g, "");
-  });
-}
-
-removeWeirdGreaterSigns();
-    class ProgressBar extends HTMLElement {
-      connectedCallback() {
-        const step = Number(this.getAttribute("step"));
-        const width = (step / 7) * 100;
-        this.innerHTML = `
-          <div class="progress-row">
-            <div class="progress-track"><div class="progress-fill" style="width:${width}%"></div></div>
-            <div class="progress-count">${step}/7</div>
-          </div>
-        `;
-      }
-    }
-    customElements.define("progressbar", ProgressBar);
-  </script>
+</script>
 </body>
 </html>
