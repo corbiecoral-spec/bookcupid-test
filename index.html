@@ -444,14 +444,20 @@
   }
 
   .final-btn {
-    display: inline-block;
-    font-family: "Sniglet", system-ui;
-    font-size: clamp(22px, 2.3vw, 34px);
-    color: var(--white);
-    background: var(--blue);
-    border: 5px solid var(--white);
-    padding: 12px 28px;
-    box-shadow: 0 8px 22px var(--shadow);
+  display: inline-block;
+  font-family: "Sniglet", system-ui;
+  font-size: clamp(24px, 2.5vw, 37px);
+  color: var(--white);
+  background: var(--blue);
+  border: 5px solid var(--white);
+  padding: 14px 34px;
+  box-shadow: 0 8px 22px var(--shadow);
+  transition: transform .2s ease, border-color .2s ease;
+  }
+
+  .final-btn:hover {
+  transform: scale(1.04);
+  border-color: #6f8fd1;
   }
 
   .final-strong {
@@ -673,9 +679,9 @@
     }
 
     .final-btn {
-      font-size: 20px;
+      font-size: 22px;
       border-width: 4px;
-      padding: 10px 22px;
+      padding: 12px 26px;
     }
 
     .final-strong {
