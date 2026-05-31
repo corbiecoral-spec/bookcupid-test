@@ -554,9 +554,11 @@
     }
 
     .center-block {
-      padding-top: 72px;
-      width: 100%;
-    }
+  padding-top: 64px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
 
     .question-title {
       font-size: 20px;
@@ -568,16 +570,16 @@
     }
 
     .options {
-      gap: 13px;
-      width: 100%;
-    }
+  gap: 10px;
+  width: 100%;
+}
 
-    .option {
-      min-height: 42px;
-      border-width: 4px;
-      font-size: 17px;
-      padding: 5px 8px;
-    }
+.option {
+  min-height: 38px;
+  border-width: 4px;
+  font-size: 16px;
+  padding: 4px 8px;
+}
 
     .next-btn {
       font-size: 28px;
@@ -682,15 +684,19 @@
       min-height: 125px;
     }
         .long-options {
-      width: 100%;
-      gap: 9px;
-    }
+  width: calc(100vw - 44px);
+  max-width: 100%;
+  gap: 9px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-    .long-options .option {
-      font-size: 14px;
-      min-height: 44px;
-      line-height: 1.1;
-    }
+.long-options .option {
+  font-size: 15px;
+  min-height: 40px;
+  line-height: 1.05;
+  padding: 5px 8px;
+}
 
     .conditional-field {
       margin-top: 14px;
