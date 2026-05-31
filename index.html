@@ -141,12 +141,12 @@
   }
 
   .options {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: min(620px, 88vw);
-    margin: 0 auto;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: min(620px, 88vw);
+  margin: 0 auto;
+}
 
   .option {
     font-family: "Sniglet", system-ui;
@@ -172,10 +172,11 @@
   }
 
   .option.selected {
-    border-color: currentColor;
-    box-shadow: 0 0 0 4px currentColor, 0 10px 22px var(--shadow);
-    transform: scale(1.015);
-  }
+  border-color: #d77a82;
+  background: linear-gradient(180deg, #fff4a8, #ffe680);
+  box-shadow: inset 0 0 0 5px #d77a82, 0 8px 18px var(--shadow);
+  transform: none;
+}
 
   .next-btn {
     display: inline-block;
