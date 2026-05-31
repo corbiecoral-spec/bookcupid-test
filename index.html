@@ -798,18 +798,33 @@
     <section class="screen" data-screen="3">
       <button class="back-btn" type="button" onclick="goToScreen(2)">← Atrás</button>
       <div class="center-block" style="width:min(860px,94vw);">
-        <h2 class="question-title">2. ¿Qué tipo de persona eres cuando lees?<span class="helper-text">(puedes seleccionar las que quieras)</span></h2>
+        <h2 class="question-title">2. ¿Qué tipo de persona eres cuando lees?<span class="helper-text">(puedes elegir varias)</span></h2>
 
-        <div class="options long-options" data-field="tipoLector" data-max="8">
-          <div class="option" data-value="Subraya frases como loca aunque luego no vuelva a abrir el libro">La que subraya frases como loca aunque luego no vaya a volver a abrir el libro.</div>
-          <div class="option" data-value="Se salta descripciones largas porque quiere que pase algo ya">La que se salta descripciones largas porque quiere que pase algo ya.</div>
-          <div class="option" data-value="Ama las descripciones y quiere saber hasta cómo huele la habitación">La que ama las descripciones y se enfada si el autor no le dice hasta cómo huele la habitación.</div>
-          <div class="option" data-value="Puede leer con ruido de fondo">La que puede leer con la tele puesta, gente hablando y un apocalipsis de fondo.</div>
-          <div class="option" data-value="Necesita comentar cada giro argumental">La que necesita comentar cada giro argumental con alguien o explota.</div>
-          <div class="option" data-value="Compra libros nuevos aunque tenga pendientes">La que compra libros nuevos aunque tenga su estantería llena de lecturas pendientes.</div>
-          <div class="option" data-value="Abandona libros sin remordimiento">La que abandona libros sin remordimiento porque la vida es corta y la paciencia también.</div>
-          <div class="option" data-value="No abandona un libro aunque lo odie">La que no abandona un libro aunque lo esté odiando, porque ya ha leído demasiado como para rendirse.</div>
-        </div>
+<div class="options long-options" data-field="tipoLector" data-max="6">
+  <div class="option" data-value="Subraya frases como si fueran pruebas de un crimen">
+    Subrayo tantas frases que acaba pareciendo un cuaderno de apuntes.
+  </div>
+
+  <div class="option" data-value="Se salta descripciones porque necesita que pase algo ya">
+    Me salto descripciones porque necesito que pase algo YA.
+  </div>
+
+  <div class="option" data-value="Ama las descripciones y quiere detalles sensoriales">
+    Amo las descripciones: dime hasta cómo huele la habitación.
+  </div>
+
+  <div class="option" data-value="Necesita comentar cada giro argumental">
+    Necesito comentar cada giro argumental o exploto.
+  </div>
+
+  <div class="option" data-value="Compra libros aunque tenga demasiados pendientes">
+    Compro libros aunque mi estantería ya esté pidiendo auxilio.
+  </div>
+
+  <div class="option" data-value="Abandona libros sin culpa">
+    Abandono libros sin culpa: la vida es corta.
+  </div>
+</div>
 
         <button class="next-btn" type="button" onclick="validateAndNext(3)">Siguiente</button>
         <div class="error" id="error-3"></div>
