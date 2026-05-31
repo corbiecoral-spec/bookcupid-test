@@ -161,20 +161,20 @@
     padding: 4px 14px;
     cursor: pointer;
     box-shadow: 0 5px 14px var(--shadow);
-    transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
+    transition: transform .15s ease, filter .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
     user-select: none;
   }
 
   .option:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.04);
-    border-color: currentColor;
-  }
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+}
 
   .option.selected {
-  border-color: #d77a82;
-  background: linear-gradient(180deg, #fff4a8, #ffe680);
-  box-shadow: inset 0 0 0 5px #d77a82, 0 8px 18px var(--shadow);
+  border-color: #d96f7d;
+  background: #ffa1ad;
+  color: #b94f5d;
+  box-shadow: 0 5px 14px var(--shadow);
   transform: none;
 }
 
