@@ -399,6 +399,41 @@
     color: rgba(72, 96, 130, .38);
   }
 
+    .conditional-field {
+    display: none;
+    margin-top: 18px;
+  }
+
+  .conditional-field.active {
+    display: block;
+  }
+
+  .small-textarea {
+    min-height: 90px;
+  }
+
+  .long-options {
+    width: min(760px, 92vw);
+    gap: 7px;
+  }
+
+  .long-options .option {
+    font-size: clamp(13px, 1.25vw, 18px);
+    min-height: 34px;
+    line-height: 1.05;
+    padding: 6px 12px;
+  }
+
+  .date-scene-title-box {
+    text-align: center;
+    padding-left: 0;
+  }
+
+  .date-scene-title-box h2 {
+    font-size: clamp(20px, 2.4vw, 31px);
+    line-height: 1.05;
+  }
+
   /* FINAL */
   .final-screen {
     padding: 32px 58px;
@@ -644,6 +679,20 @@
     textarea {
       min-height: 125px;
     }
+        .long-options {
+      width: 100%;
+      gap: 9px;
+    }
+
+    .long-options .option {
+      font-size: 14px;
+      min-height: 44px;
+      line-height: 1.1;
+    }
+
+    .conditional-field {
+      margin-top: 14px;
+    }
 
     .final-screen {
       padding: 22px 20px;
@@ -708,8 +757,28 @@
       </div>
     </section>
 
-    <section class="screen" data-screen="1">
+        <section class="screen" data-screen="1">
       <button class="back-btn" type="button" onclick="goToScreen(0)">← Atrás</button>
+      <div class="center-block">
+        <h2 class="question-title">Antes de empezar…<span class="helper-text">¿La cita literaria es para ti o para alguien más?</span></h2>
+
+        <div class="options" data-field="destinatarioTipo" data-max="1">
+          <div class="option" data-value="Es para regalar a alguien especial">Es para regalar a alguien especial ❤️</div>
+          <div class="option" data-value="Es para mí, quiero autorregalarme una cita sorpresa">Es para mí, quiero autorregalarme una cita sorpresa 😍</div>
+        </div>
+
+        <div class="field-wrap conditional-field" id="giftField">
+          <label class="input-label" for="paraQuien">¿Para quién es?</label>
+          <input id="paraQuien" type="text" placeholder="ej: para una amiga, mi madre, mi padre, una tía...">
+        </div>
+
+        <button class="next-btn" type="button" onclick="validateAndNext(1)">Siguiente</button>
+        <div class="error" id="error-1"></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="2">
+      <button class="back-btn" type="button" onclick="goToScreen(1)">← Atrás</button>
       <div class="center-block">
         <h2 class="question-title">1. ¿Qué te apetece sentir?<span class="helper-text">(puedes escoger hasta 3 opciones)</span></h2>
         <div class="options" data-field="sensaciones" data-max="3">
@@ -720,31 +789,52 @@
           <div class="option" data-value="Un mundo de fantasía">Un mundo de fantasía</div>
           <div class="option" data-value="Entenderme mejor">Entenderme mejor</div>
         </div>
-        <button class="next-btn" type="button" onclick="validateAndNext(1)">Siguiente</button>
-        <div class="error" id="error-1"></div>
+        <button class="next-btn" type="button" onclick="validateAndNext(2)">Siguiente</button>
+        <div class="error" id="error-2"></div>
       </div>
     </section>
 
-    <section class="screen" data-screen="2">
-      <button class="back-btn" type="button" onclick="goToScreen(1)">← Atrás</button>
+    <section class="screen" data-screen="3">
+      <button class="back-btn" type="button" onclick="goToScreen(2)">← Atrás</button>
+      <div class="center-block" style="width:min(860px,94vw);">
+        <h2 class="question-title">2. ¿Qué tipo de persona eres cuando lees?<span class="helper-text">(puedes seleccionar las que quieras)</span></h2>
+
+        <div class="options long-options" data-field="tipoLector" data-max="8">
+          <div class="option" data-value="Subraya frases como loca aunque luego no vuelva a abrir el libro">La que subraya frases como loca aunque luego no vaya a volver a abrir el libro.</div>
+          <div class="option" data-value="Se salta descripciones largas porque quiere que pase algo ya">La que se salta descripciones largas porque quiere que pase algo ya.</div>
+          <div class="option" data-value="Ama las descripciones y quiere saber hasta cómo huele la habitación">La que ama las descripciones y se enfada si el autor no le dice hasta cómo huele la habitación.</div>
+          <div class="option" data-value="Puede leer con ruido de fondo">La que puede leer con la tele puesta, gente hablando y un apocalipsis de fondo.</div>
+          <div class="option" data-value="Necesita comentar cada giro argumental">La que necesita comentar cada giro argumental con alguien o explota.</div>
+          <div class="option" data-value="Compra libros nuevos aunque tenga pendientes">La que compra libros nuevos aunque tenga su estantería llena de lecturas pendientes.</div>
+          <div class="option" data-value="Abandona libros sin remordimiento">La que abandona libros sin remordimiento porque la vida es corta y la paciencia también.</div>
+          <div class="option" data-value="No abandona un libro aunque lo odie">La que no abandona un libro aunque lo esté odiando, porque ya ha leído demasiado como para rendirse.</div>
+        </div>
+
+        <button class="next-btn" type="button" onclick="validateAndNext(3)">Siguiente</button>
+        <div class="error" id="error-3"></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="4">
+      <button class="back-btn" type="button" onclick="goToScreen(3)">← Atrás</button>
       <div class="center-block">
-        <h2 class="question-title">2. Nivel de intensidad emocional<span class="helper-text">(escoge una opción)</span></h2>
+        <h2 class="question-title">3. Nivel de intensidad emocional<span class="helper-text">(escoge una opción)</span></h2>
         <div class="options" data-field="intensidad" data-max="1">
           <div class="option" style="background:#d8f3a6;color:#5b7f22" data-value="Suave, para relajarme">Suave, para relajarme</div>
           <div class="option" style="background:#b9cdfb;color:#005499" data-value="Medio, que me enganche">Medio, que me enganche</div>
           <div class="option" style="background:#fff1a8;color:#99822b" data-value="Intenso, que me duela">Intenso, que me duela</div>
           <div class="option" style="background:#ffa1ad;color:#a13d42" data-value="Destructivo, quiero sufrir">Destructivo, quiero sufrir</div>
         </div>
-        <button class="next-btn" type="button" onclick="validateAndNext(2)">Siguiente</button>
-        <div class="error" id="error-2"></div>
+        <button class="next-btn" type="button" onclick="validateAndNext(4)">Siguiente</button>
+        <div class="error" id="error-4"></div>
       </div>
     </section>
 
-    <section class="screen scene-screen" data-screen="3">
-      <button class="back-btn" type="button" onclick="goToScreen(2)">← Atrás</button>
+    <section class="screen scene-screen" data-screen="5">
+      <button class="back-btn" type="button" onclick="goToScreen(4)">← Atrás</button>
 
       <div class="scene-title-box">
-        <h2>3. Escoge la escena que más te llame la atención</h2>
+        <h2>4. Escoge la escena que más te llame la atención</h2>
         <span class="helper-text">(puedes escoger hasta 3 escenas)</span>
       </div>
 
@@ -761,33 +851,6 @@
       </div>
 
       <div class="scene-next">
-        <button class="next-btn" type="button" onclick="validateAndNext(3)">Siguiente</button>
-        <div class="error" id="error-3"></div>
-      </div>
-    </section>
-
-    <section class="screen" data-screen="4">
-      <button class="back-btn" type="button" onclick="goToScreen(3)">← Atrás</button>
-      <div class="center-block" style="width:100%; max-width:820px;">
-        <h2 class="question-title">4. ¿Qué nivel de spicy prefieres?<span class="helper-text">(escoge una opción)</span></h2>
-        <div class="spicy-options options" data-field="spicy" data-max="1">
-          <div class="spicy-card blue option" data-value="Nada">Nada<span>🤍🤍</span></div>
-          <div class="spicy-card yellow option" data-value="Medio">Medio<span>🌶️</span></div>
-          <div class="spicy-card red option" data-value="Explícito sin límite">Sin límite<span>🔥🌶️</span></div>
-        </div>
-        <button class="next-btn" type="button" onclick="validateAndNext(4)">Siguiente</button>
-        <div class="error" id="error-4"></div>
-      </div>
-    </section>
-
-    <section class="screen" data-screen="5">
-      <button class="back-btn" type="button" onclick="goToScreen(4)">← Atrás</button>
-      <div class="center-block">
-        <h2 class="question-title">5. ¿Qué edad tienes?<span class="helper-text">(o la persona que vaya a recibir el regalo)</span></h2>
-        <div class="field-wrap">
-          <label class="input-label" for="edad">Escribe solo la cifra</label>
-          <input id="edad" type="number" min="12" max="120" placeholder="ej: 32">
-        </div>
         <button class="next-btn" type="button" onclick="validateAndNext(5)">Siguiente</button>
         <div class="error" id="error-5"></div>
       </div>
@@ -795,29 +858,133 @@
 
     <section class="screen" data-screen="6">
       <button class="back-btn" type="button" onclick="goToScreen(5)">← Atrás</button>
-      <div class="center-block" style="width:min(820px,92vw)">
-        <h2 class="question-title">6. Cuéntame algo sobre ti<span class="helper-text">(o sobre la persona que vaya a recibir el regalo)</span></h2>
-        <div class="field-wrap">
-          <textarea id="sobreTi" placeholder="escribe aquí"></textarea>
+      <div class="center-block" style="width:100%; max-width:820px;">
+        <h2 class="question-title">5. ¿Qué nivel de spicy prefieres?<span class="helper-text">(escoge una opción)</span></h2>
+        <div class="spicy-options options" data-field="spicy" data-max="1">
+          <div class="spicy-card blue option" data-value="Nada">Nada<span>🤍🤍</span></div>
+          <div class="spicy-card yellow option" data-value="Medio">Medio<span>🌶️</span></div>
+          <div class="spicy-card red option" data-value="Explícito sin límite">Sin límite<span>🔥🌶️</span></div>
         </div>
         <button class="next-btn" type="button" onclick="validateAndNext(6)">Siguiente</button>
         <div class="error" id="error-6"></div>
       </div>
     </section>
 
-    <section class="screen email-screen" data-screen="7">
+    <section class="screen scene-screen" data-screen="7">
       <button class="back-btn" type="button" onclick="goToScreen(6)">← Atrás</button>
+
+      <div class="date-scene-title-box">
+        <h2>6. Si tuvieras una cita perfecta, ¿dónde sería?</h2>
+        <span class="helper-text">(escoge una opción)</span>
+      </div>
+
+            <div class="scene-grid options" data-field="citaPerfecta" data-max="1">
+        <div class="scene-card option" data-value="Cita en cafetería mientras llueve">
+          <img src="cita-cafeteria-lluvia.jpg" alt="Cita en cafetería mientras llueve">
+        </div>
+
+        <div class="scene-card option" data-value="Picnic en un jardín">
+          <img src="cita-picnic-jardin.jpg" alt="Picnic en un jardín">
+        </div>
+
+        <div class="scene-card option" data-value="Cita en París">
+          <img src="cita-paris.jpg" alt="Cita en París">
+        </div>
+
+        <div class="scene-card option" data-value="Cita en un museo">
+          <img src="cita-museo.jpg" alt="Cita en un museo">
+        </div>
+
+        <div class="scene-card option" data-value="Cita a caballo">
+          <img src="cita-caballos.jpg" alt="Cita a caballo">
+        </div>
+
+        <div class="scene-card option" data-value="Cita en una feria">
+          <img src="cita-feria.jpg" alt="Cita en una feria">
+        </div>
+
+        <div class="scene-card option" data-value="Cita cozy de peli y manta">
+          <img src="cita-netflix-cozy.jpg" alt="Cita cozy de peli y manta">
+        </div>
+
+        <div class="scene-card option" data-value="Cita elegante de baile">
+          <img src="cita-baile-prom.jpg" alt="Cita elegante de baile">
+        </div>
+
+        <div class="scene-card option" data-value="Cita de instituto o romance deportivo">
+          <img src="cita-highschool-sport.jpg" alt="Cita de instituto o romance deportivo">
+        </div>
+      </div>
+
+      <div class="scene-next">
+        <button class="next-btn" type="button" onclick="validateAndNext(7)">Siguiente</button>
+        <div class="error" id="error-7"></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="8">
+      <button class="back-btn" type="button" onclick="goToScreen(7)">← Atrás</button>
+      <div class="center-block">
+        <h2 class="question-title">7. ¿Qué edad tienes?<span class="helper-text">(o la persona que vaya a recibir el regalo)</span></h2>
+        <div class="field-wrap">
+          <label class="input-label" for="edad">Escribe solo la cifra</label>
+          <input id="edad" type="number" min="12" max="120" placeholder="ej: 32">
+        </div>
+        <button class="next-btn" type="button" onclick="validateAndNext(8)">Siguiente</button>
+        <div class="error" id="error-8"></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="9">
+      <button class="back-btn" type="button" onclick="goToScreen(8)">← Atrás</button>
+      <div class="center-block" style="width:min(820px,92vw)">
+        <h2 class="question-title">8. Cuéntame algo sobre ti<span class="helper-text">(o sobre la persona que vaya a recibir el regalo)</span></h2>
+        <div class="field-wrap">
+          <textarea id="sobreTi" placeholder="escribe aquí"></textarea>
+        </div>
+        <button class="next-btn" type="button" onclick="validateAndNext(9)">Siguiente</button>
+        <div class="error" id="error-9"></div>
+      </div>
+    </section>
+
+    <section class="screen email-screen" data-screen="10">
+      <button class="back-btn" type="button" onclick="goToScreen(9)">← Atrás</button>
       <div class="center-block">
         <h2 class="question-title">Escribe tu correo electrónico<span class="helper-text">(el mismo con el que realizarás tu pedido<br>para que podamos preparar tu libro sorpresa perfecto)</span></h2>
         <div class="field-wrap">
           <input id="email" type="email" placeholder="email">
         </div>
-        <button class="next-btn" type="button" onclick="submitTest(event)">Siguiente</button>
-        <div class="error" id="error-7"></div>
+        <button class="next-btn" type="button" onclick="validateAndNext(10)">Siguiente</button>
+        <div class="error" id="error-10"></div>
       </div>
     </section>
 
-    <section class="screen final-screen" data-screen="8">
+    <section class="screen" data-screen="11">
+      <button class="back-btn" type="button" onclick="goToScreen(10)">← Atrás</button>
+      <div class="center-block">
+        <h2 class="question-title">¿Tienes lista de Goodreads?<span class="helper-text">(Así reducimos la probabilidad de que te toque un libro repetido)</span></h2>
+
+        <div class="options" data-field="tieneGoodreads" data-max="1">
+          <div class="option" data-value="Sí">Sí</div>
+          <div class="option" data-value="No">No</div>
+        </div>
+
+        <div class="field-wrap conditional-field" id="goodreadsField">
+          <label class="input-label" for="goodreadsUrl">Pega aquí tu enlace de Goodreads</label>
+          <input id="goodreadsUrl" type="url" placeholder="https://www.goodreads.com/...">
+        </div>
+
+        <div class="field-wrap conditional-field" id="noGoodreadsField">
+          <label class="input-label" for="librosEvitar">¿Hay algún libro que no quieras recibir?</label>
+          <textarea id="librosEvitar" class="small-textarea" placeholder="Ej: no quiero recibir estos libros, ya los tengo, no me gusta este autor..."></textarea>
+        </div>
+
+        <button class="next-btn" type="button" onclick="submitTest(event)">Finalizar</button>
+        <div class="error" id="error-11"></div>
+      </div>
+    </section>
+
+    <section class="screen final-screen" data-screen="12">
       <div class="final-layout">
         <div>
           <h1 class="final-main-title">
@@ -852,13 +1019,20 @@ const CART_URL = "https://bookcupidshop.com/collections/frontpage";
 document.getElementById("cartLink").href = CART_URL;
 
 const answers = {
+  destinatarioTipo: "",
+  paraQuien: "",
   sensaciones: [],
+  tipoLector: [],
   intensidad: "",
   escenas: [],
   spicy: "",
+  citaPerfecta: "",
   edad: "",
   sobreTi: "",
-  email: ""
+  email: "",
+  tieneGoodreads: "",
+  goodreadsUrl: "",
+  librosEvitar: ""
 };
 
 document.querySelectorAll(".options").forEach(group => {
@@ -875,6 +1049,38 @@ document.querySelectorAll(".options").forEach(group => {
       group.querySelectorAll(".option").forEach(item => item.classList.remove("selected"));
       option.classList.add("selected");
       answers[field] = value;
+
+      if (field === "destinatarioTipo") {
+        const giftField = document.getElementById("giftField");
+
+        if (value === "Es para regalar a alguien especial") {
+          giftField.classList.add("active");
+        } else {
+          giftField.classList.remove("active");
+          document.getElementById("paraQuien").value = "";
+          answers.paraQuien = "";
+        }
+      }
+
+      if (field === "tieneGoodreads") {
+        const goodreadsField = document.getElementById("goodreadsField");
+        const noGoodreadsField = document.getElementById("noGoodreadsField");
+
+        if (value === "Sí") {
+          goodreadsField.classList.add("active");
+          noGoodreadsField.classList.remove("active");
+          document.getElementById("librosEvitar").value = "";
+          answers.librosEvitar = "";
+        }
+
+        if (value === "No") {
+          noGoodreadsField.classList.add("active");
+          goodreadsField.classList.remove("active");
+          document.getElementById("goodreadsUrl").value = "";
+          answers.goodreadsUrl = "";
+        }
+      }
+
       return;
     }
 
@@ -899,27 +1105,53 @@ function validateAndNext(step) {
   const error = document.getElementById(`error-${step}`);
   error.textContent = "";
 
-  if (step === 1 && answers.sensaciones.length === 0) {
+  if (step === 1) {
+    if (!answers.destinatarioTipo) {
+      error.textContent = "Escoge una opción.";
+      return;
+    }
+
+    if (answers.destinatarioTipo === "Es para regalar a alguien especial") {
+      answers.paraQuien = document.getElementById("paraQuien").value.trim();
+
+      if (!answers.paraQuien) {
+        error.textContent = "Escribe para quién es la cita literaria.";
+        return;
+      }
+    }
+  }
+
+  if (step === 2 && answers.sensaciones.length === 0) {
     error.textContent = "Escoge al menos una opción.";
     return;
   }
 
-  if (step === 2 && !answers.intensidad) {
+  if (step === 3 && answers.tipoLector.length === 0) {
+    error.textContent = "Escoge al menos una opción.";
+    return;
+  }
+
+  if (step === 4 && !answers.intensidad) {
     error.textContent = "Escoge una opción.";
     return;
   }
 
-  if (step === 3 && answers.escenas.length === 0) {
+  if (step === 5 && answers.escenas.length === 0) {
     error.textContent = "Escoge al menos una escena.";
     return;
   }
 
-  if (step === 4 && !answers.spicy) {
+  if (step === 6 && !answers.spicy) {
     error.textContent = "Escoge una opción.";
     return;
   }
 
-  if (step === 5) {
+  if (step === 7 && !answers.citaPerfecta) {
+    error.textContent = "Escoge una opción.";
+    return;
+  }
+
+  if (step === 8) {
     answers.edad = document.getElementById("edad").value.trim();
     if (!answers.edad || Number(answers.edad) < 12) {
       error.textContent = "Escribe una edad válida.";
@@ -927,8 +1159,17 @@ function validateAndNext(step) {
     }
   }
 
-  if (step === 6) {
+  if (step === 9) {
     answers.sobreTi = document.getElementById("sobreTi").value.trim();
+  }
+
+  if (step === 10) {
+    answers.email = document.getElementById("email").value.trim();
+
+    if (!validEmail(answers.email)) {
+      error.textContent = "Escribe un email válido.";
+      return;
+    }
   }
 
   goToScreen(step + 1);
@@ -940,11 +1181,18 @@ function validEmail(email) {
 
 function getTipoRecomendado() {
   const texto = [
+    answers.destinatarioTipo,
+    answers.paraQuien,
     ...answers.sensaciones,
+    ...answers.tipoLector,
     answers.intensidad,
     ...answers.escenas,
     answers.spicy,
-    answers.sobreTi
+    answers.citaPerfecta,
+    answers.sobreTi,
+    answers.tieneGoodreads,
+    answers.goodreadsUrl,
+    answers.librosEvitar
   ].join(" ").toLowerCase();
 
   if (texto.includes("fantasía") || texto.includes("hadas") || texto.includes("mundo de fantasía")) return "Fantasía / romantasy";
@@ -959,15 +1207,26 @@ function getTipoRecomendado() {
 }
 
 async function submitTest(event) {
-  const error = document.getElementById("error-7");
+  const error = document.getElementById("error-11");
   const button = event.target;
   error.textContent = "";
 
-  answers.email = document.getElementById("email").value.trim();
-
-  if (!validEmail(answers.email)) {
-    error.textContent = "Escribe un email válido.";
+  if (!answers.tieneGoodreads) {
+    error.textContent = "Escoge si tienes lista de Goodreads.";
     return;
+  }
+
+  if (answers.tieneGoodreads === "Sí") {
+    answers.goodreadsUrl = document.getElementById("goodreadsUrl").value.trim();
+
+    if (!answers.goodreadsUrl) {
+      error.textContent = "Pega el enlace de Goodreads.";
+      return;
+    }
+  }
+
+  if (answers.tieneGoodreads === "No") {
+    answers.librosEvitar = document.getElementById("librosEvitar").value.trim();
   }
 
   button.disabled = true;
@@ -976,7 +1235,7 @@ async function submitTest(event) {
   try {
     if (!supabaseClient) {
       console.log("Modo prueba: respuestas no guardadas todavía", answers);
-      goToScreen(8);
+      goToScreen(12);
       return;
     }
 
@@ -984,24 +1243,36 @@ async function submitTest(event) {
       .from("book_cupid_test")
       .insert([{
         email: answers.email,
+
+        destinatario_tipo: answers.destinatarioTipo,
+        para_quien: answers.paraQuien,
+
         sensaciones: answers.sensaciones.join(", "),
+        tipo_lector: answers.tipoLector.join(", "),
         intensidad: answers.intensidad,
         escenas: answers.escenas.join(", "),
         spicy: answers.spicy,
+        cita_perfecta: answers.citaPerfecta,
+
         edad: answers.edad,
         sobre_ti: answers.sobreTi,
+
+        tiene_goodreads: answers.tieneGoodreads,
+        goodreads_url: answers.goodreadsUrl,
+        libros_evitar: answers.librosEvitar,
+
         tipo_recomendado: getTipoRecomendado()
       }]);
 
     if (supabaseError) throw supabaseError;
 
-    goToScreen(8);
+    goToScreen(12);
   } catch (err) {
     console.error(err);
     error.textContent = "Ha habido un error al guardar. Inténtalo de nuevo.";
   } finally {
     button.disabled = false;
-    button.textContent = "Siguiente";
+    button.textContent = "Finalizar";
   }
 }
 </script>
