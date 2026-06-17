@@ -410,6 +410,42 @@
     display: block;
   }
 
+  /* CASILLAS LEGALES */
+.legal-checks {
+  width: min(600px, 82vw);
+  margin: 18px auto 0;
+  text-align: left;
+  color: var(--brown);
+  font-family: "Arimo", sans-serif;
+  font-size: clamp(12px, 1.1vw, 15px);
+  line-height: 1.25;
+}
+
+.legal-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin-bottom: 10px;
+}
+
+.legal-check input {
+  width: auto;
+  box-shadow: none;
+  margin-top: 2px;
+  accent-color: var(--pink);
+  cursor: pointer;
+}
+
+.legal-check label {
+  cursor: pointer;
+}
+
+.legal-check a {
+  color: #005499;
+  font-weight: 700;
+  text-decoration: underline;
+}  
+
   .small-textarea {
     min-height: 90px;
   }
@@ -717,6 +753,11 @@
     .conditional-field {
       margin-top: 14px;
     }
+    .legal-checks {
+  width: 100%;
+  font-size: 12px;
+  margin-top: 16px;
+}
 
     .final-screen {
       padding: 22px 20px;
@@ -987,16 +1028,40 @@
     </section>
 
     <section class="screen email-screen" data-screen="10">
-      <button class="back-btn" type="button" onclick="goToScreen(9)">← Atrás</button>
-      <div class="center-block">
-        <h2 class="question-title">Escribe tu correo electrónico<span class="helper-text">(el mismo con el que realizarás tu pedido<br>para que podamos preparar tu libro sorpresa perfecto)</span></h2>
-        <div class="field-wrap">
-          <input id="email" type="email" placeholder="email">
-        </div>
-        <button class="next-btn" type="button" onclick="validateAndNext(10)">Siguiente</button>
-        <div class="error" id="error-10"></div>
+  <button class="back-btn" type="button" onclick="goToScreen(9)">← Atrás</button>
+  <div class="center-block">
+    <h2 class="question-title">
+      Escribe tu correo electrónico
+      <span class="helper-text">(el mismo con el que realizarás tu pedido<br>para que podamos preparar tu libro sorpresa perfecto)</span>
+    </h2>
+
+    <div class="field-wrap">
+      <input id="email" type="email" placeholder="email">
+    </div>
+
+    <div class="legal-checks">
+      <div class="legal-check">
+        <input id="aceptaPolitica" type="checkbox">
+        <label for="aceptaPolitica">
+          He leído y acepto la 
+          <a href="https://bookcupidshop.com/policies/privacy-policy" target="_blank" rel="noopener">
+            política de privacidad
+          </a>.
+        </label>
       </div>
-    </section>
+
+      <div class="legal-check">
+        <input id="aceptaMarketing" type="checkbox">
+        <label for="aceptaMarketing">
+          Quiero recibir novedades, recomendaciones lectoras, lanzamientos y comunicaciones de BookCupid por email. Podré darme de baja cuando quiera.
+        </label>
+      </div>
+    </div>
+
+    <button class="next-btn" type="button" onclick="validateAndNext(10)">Siguiente</button>
+    <div class="error" id="error-10"></div>
+  </div>
+</section>
 
     <section class="screen" data-screen="11">
       <button class="back-btn" type="button" onclick="goToScreen(10)">← Atrás</button>
@@ -1069,6 +1134,8 @@ const answers = {
   edad: "",
   sobreTi: "",
   email: "",
+  aceptaPolitica: false,
+  aceptaMarketing: false,
   tieneGoodreads: "",
   goodreadsUrl: "",
   librosEvitar: ""
@@ -1203,13 +1270,20 @@ function validateAndNext(step, nextScreen) {
   }
 
   if (step === 10) {
-    answers.email = document.getElementById("email").value.trim();
+  answers.email = document.getElementById("email").value.trim();
+  answers.aceptaPolitica = document.getElementById("aceptaPolitica").checked;
+  answers.aceptaMarketing = document.getElementById("aceptaMarketing").checked;
 
-    if (!validEmail(answers.email)) {
-      error.textContent = "Escribe un email válido.";
-      return;
-    }
+  if (!validEmail(answers.email)) {
+    error.textContent = "Escribe un email válido.";
+    return;
   }
+
+  if (!answers.aceptaPolitica) {
+    error.textContent = "Debes aceptar la política de privacidad para continuar.";
+    return;
+  }
+}
 
   goToScreen(nextScreen || step + 1);
 }
@@ -1279,11 +1353,14 @@ async function submitTest(event) {
     }
 
     const { error: supabaseError } = await supabaseClient
-      .from("book_cupid_test")
-      .insert([{
-        email: answers.email,
+  .from("book_cupid_test")
+  .insert([{
+    email: answers.email,
 
-        destinatario_tipo: answers.destinatarioTipo,
+    acepta_politica: answers.aceptaPolitica,
+    acepta_marketing: answers.aceptaMarketing,
+
+    destinatario_tipo: answers.destinatarioTipo,
         para_quien: answers.paraQuien,
 
         sensaciones: answers.sensaciones.join(", "),
